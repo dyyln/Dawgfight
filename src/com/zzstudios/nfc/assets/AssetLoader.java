@@ -1,10 +1,8 @@
-package com.dddbomber.bgj.assets;
+package com.zzstudios.nfc.assets;
 
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 

@@ -1,4 +1,4 @@
-package com.dddbomber.bgj.assets;
+package com.zzstudios.nfc.assets;
 
 public class Screen extends Bitmap{
 	

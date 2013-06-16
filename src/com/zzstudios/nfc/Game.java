@@ -1,4 +1,4 @@
-package com.dddbomber.bgj;
+package com.zzstudios.nfc;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -12,9 +12,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.dddbomber.bgj.assets.Render;
-import com.dddbomber.bgj.assets.Screen;
-import com.dddbomber.bgj.input.InputHandler;
+import com.zzstudios.nfc.assets.Render;
+import com.zzstudios.nfc.assets.Screen;
+import com.zzstudios.nfc.input.InputHandler;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
@@ -83,7 +83,7 @@ public class Game extends Canvas implements Runnable{
 			render.fill(0, 0, WIDTH, HEIGHT, 0xffffff, 50);
 			String msg = "CLICK TO FOCUS";
 			render.draw(msg, 240-msg.length()*6, 100, 0xffffff, 2);
-			render.fill(input.mouse.x-2, input.mouse.y-2, 4, 4, 0xffffff);
+			render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0xffffff);
 		}
 		
 		g.setColor(Color.BLACK);
@@ -96,7 +96,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		xo = getWidth()/2-SCREENWIDTH/2;
 		yo = getHeight()/2-SCREENHEIGHT/2;
-		g.drawImage(render.getImage(), xo,  yo, SCREENWIDTH, SCREENHEIGHT, null);
+		g.drawImage(render.getImage(), xo, yo, SCREENWIDTH, SCREENHEIGHT, null);
 
 		g.dispose();
 		bs.show();

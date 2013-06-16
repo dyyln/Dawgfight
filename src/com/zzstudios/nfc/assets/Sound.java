@@ -1,13 +1,8 @@
-package com.dddbomber.bgj.assets;
+package com.zzstudios.nfc.assets;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.util.ArrayList;
-
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineEvent.Type;
-import javax.sound.sampled.LineListener;
 
 public class Sound {
 	public static ArrayList<Sound> sounds = new ArrayList<Sound>();
