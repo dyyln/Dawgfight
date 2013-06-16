@@ -20,14 +20,16 @@ public class MouseHandler implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		x = (int) ((e.getX() - Game.xo)/(Game.SCREENWIDTH/Game.WIDTH));
-		y = (int) ((e.getY() - Game.yo)/(Game.SCREENWIDTH/Game.WIDTH));
+        double scale = ((double)Game.SCREENWIDTH/(double)Game.WIDTH);
+        x = (int) ((e.getX() - Game.xo)/scale);
+        y = (int) ((e.getY() - Game.yo)/scale);
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		x = (int) ((e.getX() - Game.xo)/(Game.SCREENWIDTH/Game.WIDTH));
-		y = (int) ((e.getY() - Game.yo)/(Game.SCREENWIDTH/Game.WIDTH));
+        double scale = ((double)Game.SCREENWIDTH/(double)Game.WIDTH);
+		x = (int) ((e.getX() - Game.xo)/scale);
+		y = (int) ((e.getY() - Game.yo)/scale);
 	}
 
 	@Override

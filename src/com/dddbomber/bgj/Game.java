@@ -97,7 +97,7 @@ public class Game extends Canvas implements Runnable{
 		xo = getWidth()/2-SCREENWIDTH/2;
 		yo = getHeight()/2-SCREENHEIGHT/2;
 		g.drawImage(render.getImage(), xo,  yo, SCREENWIDTH, SCREENHEIGHT, null);
-		
+
 		g.dispose();
 		bs.show();
 	}
