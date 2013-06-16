@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import com.dddbomber.bgj.Game;
+
 public class MouseHandler implements MouseListener, MouseMotionListener{
 	
 	public MouseHandler(Canvas c){
@@ -18,14 +20,14 @@ public class MouseHandler implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		x = (int) (e.getX()/2);
-		y = (int) (e.getY()/2);
+		x = (int) ((e.getX() - Game.xo)/2);
+		y = (int) ((e.getY() - Game.yo)/2);
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		x = (int) (e.getX()/2);
-		y = (int) (e.getY()/2);
+		x = (int) ((e.getX() - Game.xo)/2);
+		y = (int) ((e.getY() - Game.yo)/2);
 	}
 
 	@Override

@@ -73,6 +73,8 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 
+	public static int xo, yo;
+	
 	private void render() {
 		renders++;
 		BufferStrategy bs = this.getBufferStrategy();
@@ -89,11 +91,14 @@ public class Game extends Canvas implements Runnable{
 			render.fill(0, 0, WIDTH, HEIGHT, 0xffffff, 50);
 			String msg = "CLICK TO FOCUS";
 			render.draw(msg, 240-msg.length()*6, 100, 0xffffff, 2);
+			render.fill(input.mouse.x-2, input.mouse.y-2, 4, 4, 0xffffff);
 		}
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		g.drawImage(render.getImage(), getWidth()/2-480,  getHeight()/2-360, 960, 720, null);
+		xo = getWidth()/2-480;
+		yo = getHeight()/2-360;
+		g.drawImage(render.getImage(), xo,  yo, 960, 720, null);
 		
 		g.dispose();
 		bs.show();
