@@ -5,23 +5,15 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.dddbomber.bgj.assets.Asset;
 import com.dddbomber.bgj.assets.Render;
 import com.dddbomber.bgj.assets.Screen;
-import com.dddbomber.bgj.assets.Sound;
 import com.dddbomber.bgj.input.InputHandler;
 
 public class Game extends Canvas implements Runnable{
@@ -96,9 +88,15 @@ public class Game extends Canvas implements Runnable{
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		xo = getWidth()/2-480;
-		yo = getHeight()/2-360;
-		g.drawImage(render.getImage(), xo,  yo, 960, 720, null);
+		while(yo > 0){
+			SCREENHEIGHT+=3;
+			SCREENWIDTH+=4;
+			xo = getWidth()/2-SCREENWIDTH/2;
+			yo = getHeight()/2-SCREENHEIGHT/2;
+		}
+		xo = getWidth()/2-SCREENWIDTH/2;
+		yo = getHeight()/2-SCREENHEIGHT/2;
+		g.drawImage(render.getImage(), xo,  yo, SCREENWIDTH, SCREENHEIGHT, null);
 		
 		g.dispose();
 		bs.show();
