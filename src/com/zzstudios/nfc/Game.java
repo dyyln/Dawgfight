@@ -5,8 +5,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Window;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.lang.reflect.Method;
 
@@ -67,7 +70,7 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 
-	public static int xo, yo;
+	public static int xo, yo = 1;
 	
 	private void render() {
 		renders++;
@@ -83,7 +86,7 @@ public class Game extends Canvas implements Runnable{
 		
 		if(!input.focus.hasFocus || true){
 			render.fill(0, 0, WIDTH, HEIGHT, 0xffffff, 50);
-			String msg = "CLICK TO FOCUS";
+			String msg = "RENDERED: " +renders;
 			render.draw(msg, 240-msg.length()*6, 100, 0xffffff, 2);
 			render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0xffffff);
 		}
@@ -96,8 +99,6 @@ public class Game extends Canvas implements Runnable{
 			xo = getWidth()/2-SCREENWIDTH/2;
 			yo = getHeight()/2-SCREENHEIGHT/2;
 		}
-		xo = getWidth()/2-SCREENWIDTH/2;
-		yo = getHeight()/2-SCREENHEIGHT/2;
 		g.drawImage(render.getImage(), xo, yo, SCREENWIDTH, SCREENHEIGHT, null);
 
 		g.dispose();
@@ -109,6 +110,9 @@ public class Game extends Canvas implements Runnable{
 	private void tick() {
 		ticks++;
 		if(!input.focus.hasFocus)return;
+		if(input.keyboard.keys[KeyEvent.VK_ESCAPE]){
+			System.exit(0);
+		}
 	}
 	
 	public static Image icon;
@@ -135,28 +139,21 @@ public class Game extends Canvas implements Runnable{
 		frame.dispose();
 		frame.setUndecorated(true);
 
-		frame.setBounds(0,0,frame.getToolkit().getScreenSize().width,frame.getToolkit().getScreenSize().height);
-		frame.setVisible(true);
+		frame.setBounds(0,0,frame.getToolkit().getScreenSize().width/2,frame.getToolkit().getScreenSize().height/2);
+		
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-		enableOSXFullscreen();
+    	if (gd.isFullScreenSupported()) {
+    		try {
+    			gd.setFullScreenWindow(frame);
+    		}catch(Exception e){
+    			frame.setVisible(true);
+    		}
+    	}
 		
 		game.start();
 	}
 	
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public static void enableOSXFullscreen() {
-	    try {
-	        Class util = Class.forName("com.apple.eawt.FullScreenUtilities");
-	        Class params[] = new Class[]{Window.class, Boolean.TYPE};
-	        Method method = util.getMethod("setWindowCanFullScreen", params);
-	        method.invoke(util, frame, true);
-	    } catch (ClassNotFoundException e1) {
-	        System.out.println("NOT OS X");
-	    } catch (Exception e) {
-	        System.out.println("OS X Fullscreen FAIL");
-	    }
-	}
-
 	private Thread gameThread;
 	
 	public boolean running = false;
