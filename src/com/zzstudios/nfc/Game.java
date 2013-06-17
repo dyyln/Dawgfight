@@ -6,7 +6,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.Method;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -111,9 +113,11 @@ public class Game extends Canvas implements Runnable{
 	
 	public static Image icon;
 	
+	public static JFrame frame;
+	
 	public static void main(String[] args){
 		Game game = new Game();
-		JFrame frame = new JFrame(NAME);
+		frame = new JFrame(NAME);
 		try{
 			icon = ImageIO.read(Game.class.getResourceAsStream("/icon.png"));
 			frame.setIconImage(icon);
@@ -134,7 +138,23 @@ public class Game extends Canvas implements Runnable{
 		frame.setBounds(0,0,frame.getToolkit().getScreenSize().width,frame.getToolkit().getScreenSize().height);
 		frame.setVisible(true);
 
+		enableOSXFullscreen();
+		
 		game.start();
+	}
+	
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	public static void enableOSXFullscreen() {
+	    try {
+	        Class util = Class.forName("com.apple.eawt.FullScreenUtilities");
+	        Class params[] = new Class[]{Window.class, Boolean.TYPE};
+	        Method method = util.getMethod("setWindowCanFullScreen", params);
+	        method.invoke(util, frame, true);
+	    } catch (ClassNotFoundException e1) {
+	        System.out.println("NOT OS X");
+	    } catch (Exception e) {
+	        System.out.println("OS X Fullscreen FAIL");
+	    }
 	}
 
 	private Thread gameThread;
