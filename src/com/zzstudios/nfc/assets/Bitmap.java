@@ -245,7 +245,6 @@ public class Bitmap {
 
             int xx = ch % 26;
             int yy = ch / 26;
-            drawScaledString(font, x +(int)(i*6*scale), y+1, xx * 6, yy * 8, 5, 7, 0xbcbcbc, scale);
             drawScaledString(font, x +(int)(i*6*scale), y, xx * 6, yy * 8, 5, 7, col, scale);
         }
     }

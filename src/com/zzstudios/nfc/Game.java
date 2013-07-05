@@ -23,8 +23,8 @@ import com.zzstudios.nfc.input.InputHandler;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
-	public static int WIDTH = 480, HEIGHT = 360;
-	public static int SCREENWIDTH = 960, SCREENHEIGHT = 720;
+	public static int WIDTH = 160, HEIGHT = 144;
+	public static int SCREENWIDTH = 320, SCREENHEIGHT = 288;
 	public static final String NAME = "Dawgfight";
 
 	public Render render;
@@ -85,21 +85,23 @@ public class Game extends Canvas implements Runnable{
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
 		
 		if(!input.focus.hasFocus || true){
-			render.fill(0, 0, WIDTH, HEIGHT, 0xffffff, 50);
+			render.fill(0, 0, WIDTH, HEIGHT, 0x4F4F22, 50);
 			String msg = "RENDERED: " +renders;
-			render.draw(msg, 240-msg.length()*6, 100, 0xffffff, 2);
-			render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0xffffff);
+			render.draw(msg, 80-msg.length()*6, 100, 0xFFFFDD, 1);
+			render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0xFFFFDD);
 		}
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		while(yo > 0){
-			SCREENHEIGHT+=3;
-			SCREENWIDTH+=4;
+			SCREENHEIGHT+=9;
+			SCREENWIDTH+=10;
 			xo = getWidth()/2-SCREENWIDTH/2;
-			yo = getHeight()/2-SCREENHEIGHT/2;
+			yo = getHeight()/2-SCREENHEIGHT/2-20;
 		}
-		g.drawImage(render.getImage(), xo, yo, SCREENWIDTH, SCREENHEIGHT, null);
+		System.out.println(SCREENWIDTH +"," +SCREENHEIGHT);
+		
+		g.drawImage(render.getImage(), xo, yo+20, SCREENWIDTH, SCREENHEIGHT, null);
 
 		g.dispose();
 		bs.show();
