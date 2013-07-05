@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.zzstudios.nfc.assets.Asset;
 import com.zzstudios.nfc.assets.Render;
 import com.zzstudios.nfc.assets.Screen;
 import com.zzstudios.nfc.input.InputHandler;
@@ -74,6 +75,13 @@ public class Game extends Canvas implements Runnable{
 	
 	private void render() {
 		renders++;
+		while(yo > 0){
+			SCREENHEIGHT+=9;
+			SCREENWIDTH+=10;
+			xo = getWidth()/2-SCREENWIDTH/2;
+			yo = getHeight()/2-SCREENHEIGHT/2-20;
+		}
+		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
 			this.createBufferStrategy(3);
@@ -82,24 +90,17 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
-		
-		if(!input.focus.hasFocus || true){
-			render.fill(0, 0, WIDTH, HEIGHT, 0x4F4F22, 50);
-			String msg = "RENDERED: " +renders;
-			render.draw(msg, 80-msg.length()*6, 100, 0xFFFFDD, 1);
-			render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0xFFFFDD);
-		}
-		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		while(yo > 0){
-			SCREENHEIGHT+=9;
-			SCREENWIDTH+=10;
-			xo = getWidth()/2-SCREENWIDTH/2;
-			yo = getHeight()/2-SCREENHEIGHT/2-20;
-		}
-		System.out.println(SCREENWIDTH +"," +SCREENHEIGHT);
+		
+		screen.fill(0, 0, WIDTH, HEIGHT, 0xFFFFDD);
+		
+		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
+
+		render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0x4F4F22);
+		
+		double deg = Math.toDegrees(Math.atan2(72-input.mouse.y, 80-input.mouse.x))-90;
+		render.drawRotated(Asset.plane, 72, 64, 0, 0, 16, 16, (int) -deg);
 		
 		g.drawImage(render.getImage(), xo, yo+20, SCREENWIDTH, SCREENHEIGHT, null);
 
@@ -151,6 +152,8 @@ public class Game extends Canvas implements Runnable{
     		}catch(Exception e){
     			frame.setVisible(true);
     		}
+    	}else{
+			frame.setVisible(true);
     	}
 		
 		game.start();
