@@ -13,7 +13,7 @@ public class Level {
 	
 	public Level(){
 		for(int i = 0; i < scenary.length; i++){
-			scenary[i] = random.nextInt(5);
+			scenary[i] = random.nextInt(Asset.tiles.width/16);
 		}
 	}
 	
