@@ -12,6 +12,7 @@ import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.lang.reflect.Method;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -75,6 +76,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private void render() {
 		renders++;
+
 		while(yo > 0){
 			SCREENHEIGHT+=9;
 			SCREENWIDTH+=10;
@@ -93,11 +95,16 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		screen.fill(0, 0, WIDTH, HEIGHT, 0xFFFFDD);
+		screen.fill(0, 0, WIDTH, HEIGHT, 0xFFFFDD, 100);
+
+		screen.fill(0, 128, WIDTH, HEIGHT, 0x4F4F22, 100);
+		for(int i = 0; i < 10; i++){
+			if(tiles[i]!=0){
+				screen.draw(Asset.tiles, i*16, 112, (tiles[i]-1)*16, 0, 16, 16);
+			}
+		}
 		
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
-
-		render.fill(input.mouse.x - 2, input.mouse.y - 2, 4, 4, 0x4F4F22);
 		
 		double deg = Math.toDegrees(Math.atan2(72-input.mouse.y, 80-input.mouse.x))-90;
 		render.drawRotated(Asset.plane, 72, 64, 0, 0, 16, 16, (int) -deg);
@@ -109,6 +116,10 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public boolean pressed = false;
+	
+	Random random = new Random();
+	
+	public int[] tiles = {random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5)};
 
 	private void tick() {
 		ticks++;
@@ -139,14 +150,14 @@ public class Game extends Canvas implements Runnable{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
-		frame.dispose();
-		frame.setUndecorated(true);
+		//frame.dispose();
+		//frame.setUndecorated(true);
 
-		frame.setBounds(0,0,frame.getToolkit().getScreenSize().width/2,frame.getToolkit().getScreenSize().height/2);
+		//frame.setBounds(0,0,frame.getToolkit().getScreenSize().width/2,frame.getToolkit().getScreenSize().height/2);
 		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-    	if (gd.isFullScreenSupported()) {
+    	if (gd.isFullScreenSupported() && false) {
     		try {
     			gd.setFullScreenWindow(frame);
     		}catch(Exception e){
@@ -154,6 +165,7 @@ public class Game extends Canvas implements Runnable{
     		}
     	}else{
 			frame.setVisible(true);
+			frame.setSize(SCREENWIDTH*2, SCREENHEIGHT*2);
     	}
 		
 		game.start();
