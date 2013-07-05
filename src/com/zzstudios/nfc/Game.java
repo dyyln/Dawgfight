@@ -22,6 +22,7 @@ import com.zzstudios.nfc.assets.Asset;
 import com.zzstudios.nfc.assets.Render;
 import com.zzstudios.nfc.assets.Screen;
 import com.zzstudios.nfc.input.InputHandler;
+import com.zzstudios.nfc.level.Level;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
@@ -95,25 +96,17 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		screen.fill(0, 0, WIDTH, HEIGHT, 0xFFFFDD, 100);
-
-		screen.fill(0, 128, WIDTH, HEIGHT, 0x4F4F22, 100);
-		for(int i = 0; i < 10; i++){
-			if(tiles[i]!=0){
-				screen.draw(Asset.tiles, i*16, 112, (tiles[i]-1)*16, 0, 16, 16);
-			}
-		}
+		level.render(screen, input);
 		
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
-		
-		double deg = Math.toDegrees(Math.atan2(72-input.mouse.y, 80-input.mouse.x))-90;
-		render.drawRotated(Asset.plane, 72, 64, 0, 0, 16, 16, (int) -deg);
 		
 		g.drawImage(render.getImage(), xo, yo+20, SCREENWIDTH, SCREENHEIGHT, null);
 
 		g.dispose();
 		bs.show();
 	}
+	
+	public Level level = new Level();
 	
 	public boolean pressed = false;
 	
