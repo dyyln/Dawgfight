@@ -19,14 +19,21 @@ public class Level {
 	
 	Random random = new Random();
 	
+	public int score = 0;
+	
 	public Level(){
 		for(int i = 0; i < scenary.length; i++){
-			if(random.nextBoolean())scenary[i] = random.nextInt(Asset.tiles.width/16+1);
+			scenary[i] = random.nextInt(Asset.tiles.width/16+1);
 		}
+		entities.add(player);
 	}
 	
 	public void tick(InputHandler input){
-		player.tick(this, input);
+		for(int i = 0; i < entities.size(); i++){
+			Entity e = entities.get(i);
+			e.tick(this, input);
+			if(e.removed)entities.remove(i--);
+		}
 	}
 	
 	public void render(Screen screen, InputHandler input){
@@ -45,6 +52,20 @@ public class Level {
 			}
 		}
 		
-		player.render(screen, this, xScroll);
+		for(Entity e : entities){
+			e.render(screen, this, xScroll);
+		}
+		
+		String msg = "" +score;
+		int toAdd = 8-msg.length();
+		for(int i = 0; i < toAdd; i++){
+			msg = "0" +msg;
+		}
+		screen.draw(Asset.score, 0, 130, 0, 0, 53, 13);
+		screen.draw(msg, 3, 133, 0, 1);
+		
+		screen.draw(Asset.missile, 124, 130, 0, 0, 13, 13);
+		msg = "*"+player.missiles;
+		screen.draw(msg, 140, 133, 0, 1);
 	}
 }

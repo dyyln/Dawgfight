@@ -18,24 +18,77 @@ public class Player extends Entity{
 	}
 	
 	public double speed = 0.0;
+	public int shootDelay;
+	public int missiles = 99;
 	
 	public void tick(Level level, InputHandler input){
 		boolean left = input.keyboard.keys[KeyEvent.VK_LEFT],
-				right = input.keyboard.keys[KeyEvent.VK_RIGHT];
-		if(left)rotation-=3;
-		if(right)rotation+=3;
+				right = input.keyboard.keys[KeyEvent.VK_RIGHT],
+				up = input.keyboard.keys[KeyEvent.VK_UP];
+		if(left && speed > 0.5)rotation-=3;
+		if(right && speed > 0.5)rotation+=3;
 		
-		if(speed < 1.0)speed += 0.01;
+		rotation = rotation%360;
+		while(rotation < 0)rotation += 360;
+		
+		
+		
 		if((left || right) && speed > 0.75)speed -= 0.02;
 		
 		double movementAngle = Math.toRadians(rotation);
 		double xMove = (Math.sin(movementAngle) * speed);
 		double yMove = (Math.cos(movementAngle) * speed);
 		
+		if(shootDelay-- <= 0 && input.keyboard.keys[KeyEvent.VK_SPACE]){
+			level.entities.add(new Bullet(x+4, y+4, rotation));
+			shootDelay = 10;
+		}
+			
+		
 		speed -= yMove/100;
 		
 		x += xMove;
 		y -= yMove;
+
+		if(y > 118){
+			y = 118;
+			if(((rotation > 120 || rotation < 60) && (rotation > 300 || rotation < 240))){
+				removed = true;
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Particle(x+6, y+6, 2));
+			}
+			if(rotation >= 60 && rotation <= 120){
+				rotation = 90;
+			}else{
+				rotation = 270;
+			}
+		}else if(y == 118){
+			if(!up){
+				if(speed > 0){
+					speed -= 0.01;
+				}else{
+					speed = 0;
+				}
+			}
+			if(up){
+				if(speed < 1.0)speed += 0.01;
+			}
+		}else{
+			if(speed < 1.0)speed += 0.01;
+		}
 	}
 	
 	public void render(Screen screen, Level level, int xScroll){

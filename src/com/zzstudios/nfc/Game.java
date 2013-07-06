@@ -158,8 +158,8 @@ public class Game extends Canvas implements Runnable{
     			frame.setVisible(true);
     		}
     	}else{
+			frame.setSize(SCREENWIDTH*3, SCREENHEIGHT*3);
 			frame.setVisible(true);
-			frame.setSize(SCREENWIDTH*2, SCREENHEIGHT*2);
     	}
 		
 		game.start();
