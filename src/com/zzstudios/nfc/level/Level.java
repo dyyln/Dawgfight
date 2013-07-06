@@ -67,5 +67,10 @@ public class Level {
 		screen.draw(Asset.missile, 124, 130, 0, 0, 13, 13);
 		msg = "*"+player.missiles;
 		screen.draw(msg, 140, 133, 0, 1);
+		
+		if(player.y == 116){
+			msg = "PRESS UP TO TAKE OFF";
+			screen.draw(msg, 80-msg.length()*3, 2, 3, 1);
+		}
 	}
 }

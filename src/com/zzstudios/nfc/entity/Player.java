@@ -13,8 +13,8 @@ public class Player extends Entity{
 		xSize = 8;
 		ySize = 8;
 		x = 80;
-		y = 80;
-		rotation = 0;
+		y = 116;
+		rotation = 90;
 	}
 	
 	public double speed = 0.0;
