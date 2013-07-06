@@ -22,8 +22,8 @@ public class Player extends Entity{
 		if(input.keyboard.keys[KeyEvent.VK_RIGHT])rotation+=3;
 		
 		double movementAngle = Math.toRadians(rotation);
-		double xMove = (Math.sin(movementAngle) * 2.0);
-		double yMove = (Math.cos(movementAngle) * 2.0);
+		double xMove = (Math.sin(movementAngle) * 1.0);
+		double yMove = (Math.cos(movementAngle) * 1.0);
 		
 		x += xMove;
 		y -= yMove;
