@@ -160,6 +160,7 @@ public class Game extends Canvas implements Runnable{
     	}else{
 			frame.setSize(SCREENWIDTH*3, SCREENHEIGHT*3);
 			frame.setVisible(true);
+			frame.setLocationRelativeTo(null);
     	}
 		
 		game.start();

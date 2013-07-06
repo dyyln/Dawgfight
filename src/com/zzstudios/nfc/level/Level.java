@@ -46,7 +46,7 @@ public class Level {
 			int xo = xScroll/16;
 			int id = i+xo;
 			while(id < 0)id += 128;
-			id = scenary[id];
+			id = scenary[id%128];
 			if(id != 0){
 				screen.draw(Asset.tiles, i*16-xScroll%16, 112, (id-1)*16, 0, 16, 16);
 			}

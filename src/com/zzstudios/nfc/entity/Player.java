@@ -50,8 +50,8 @@ public class Player extends Entity{
 		x += xMove;
 		y -= yMove;
 
-		if(y > 118){
-			y = 118;
+		if(y > 116){
+			y = 116;
 			if(((rotation > 120 || rotation < 60) && (rotation > 300 || rotation < 240))){
 				removed = true;
 				level.entities.add(new Particle(x+6, y+6, 2));
@@ -75,7 +75,7 @@ public class Player extends Entity{
 			}else{
 				rotation = 270;
 			}
-		}else if(y == 118){
+		}else if(y == 116){
 			if(!up){
 				if(speed > 0){
 					speed -= 0.01;
