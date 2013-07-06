@@ -117,6 +117,7 @@ public class Game extends Canvas implements Runnable{
 	private void tick() {
 		ticks++;
 		if(!input.focus.hasFocus)return;
+		level.tick(input);
 		if(input.keyboard.keys[KeyEvent.VK_ESCAPE]){
 			System.exit(0);
 		}

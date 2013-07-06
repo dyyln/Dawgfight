@@ -238,6 +238,7 @@ public class Bitmap {
     }
 	
 	public void draw(String string, int x, int y, int col, double scale) {
+		col = cols[col];
 		string = string.toUpperCase();
         for (int i = 0; i < string.length(); i++) {
             int ch = chars.indexOf(string.charAt(i));
@@ -282,7 +283,10 @@ public class Bitmap {
 		}
 	}
 	
+	public static final int[] cols = {0xF0EFFC, 0xC2BFD2, 0x63627D, 0x3C3A4C};
+	
 	public void fill(int xPos, int yPos, int w, int h, int col){
+		col = cols[col];
 		for(int y = 0; y < h; y++){
 			int yPix = y+yPos;
 			if(yPix < 0 || yPix >= height)continue;
@@ -290,13 +294,14 @@ public class Bitmap {
 			for(int x = 0; x < w; x++){
 				int xPix = x+xPos;
 				if(xPix < 0 || xPix >= width)continue;
-				if(pixels[xPix + yPix * width] < col)pixels[xPix + yPix * width] = col;
+				pixels[xPix + yPix * width] = col;
 			}
 		}
 		
 	}
 	
 	public void fill(int xPos, int yPos, int w, int h, int col, int amount){
+		col = cols[col];
 		for(int y = 0; y < h; y++){
 			int yPix = y+yPos;
 			if(yPix < 0 || yPix >= height)continue;
