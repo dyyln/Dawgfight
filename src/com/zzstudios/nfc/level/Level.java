@@ -12,8 +12,9 @@ import com.zzstudios.nfc.input.InputHandler;
 public class Level {
 	
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
-	
+
 	public int[] scenary = new int[128];
+	public int[] clouds = new int[32];
 	
 	public Player player = new Player();
 	
@@ -24,6 +25,9 @@ public class Level {
 	public Level(){
 		for(int i = 0; i < scenary.length; i++){
 			scenary[i] = random.nextInt(Asset.tiles.width/16+1);
+		}
+		for(int i = 0; i < clouds.length; i++){
+			clouds[i] = random.nextInt(16);
 		}
 		entities.add(player);
 	}
@@ -42,6 +46,7 @@ public class Level {
 		screen.fill(0, 0, screen.width, screen.height, 0);
 
 		screen.fill(0, 128, screen.width, screen.height, 3);
+		
 		for(int i = -1; i < 11; i++){
 			int xo = xScroll/16;
 			int id = i+xo;
@@ -71,6 +76,17 @@ public class Level {
 		if(player.y == 116){
 			msg = "PRESS UP TO TAKE OFF";
 			screen.draw(msg, 80-msg.length()*3, 2, 3, 1);
+		}
+
+		
+		for(int i = -1; i < 3; i++){
+			int xo = xScroll/96;
+			int id = i+xo;
+			while(id < 0)id += 32;
+			id = clouds[id%32];
+			if(id != 0){
+				screen.draw(Asset.cloud, i*96-xScroll%96+8+id, 5+id*2, 0, 0, 64, 16);
+			}
 		}
 	}
 }
