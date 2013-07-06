@@ -17,13 +17,22 @@ public class Player extends Entity{
 		rotation = 0;
 	}
 	
+	public double speed = 0.0;
+	
 	public void tick(Level level, InputHandler input){
-		if(input.keyboard.keys[KeyEvent.VK_LEFT])rotation-=3;
-		if(input.keyboard.keys[KeyEvent.VK_RIGHT])rotation+=3;
+		boolean left = input.keyboard.keys[KeyEvent.VK_LEFT],
+				right = input.keyboard.keys[KeyEvent.VK_RIGHT];
+		if(left)rotation-=3;
+		if(right)rotation+=3;
+		
+		if(speed < 1.0)speed += 0.01;
+		if((left || right) && speed > 0.75)speed -= 0.02;
 		
 		double movementAngle = Math.toRadians(rotation);
-		double xMove = (Math.sin(movementAngle) * 1.0);
-		double yMove = (Math.cos(movementAngle) * 1.0);
+		double xMove = (Math.sin(movementAngle) * speed);
+		double yMove = (Math.cos(movementAngle) * speed);
+		
+		speed -= yMove/100;
 		
 		x += xMove;
 		y -= yMove;
