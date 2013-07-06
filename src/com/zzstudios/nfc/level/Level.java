@@ -43,9 +43,9 @@ public class Level {
 	public void render(Screen screen, InputHandler input){
 		int xScroll = (int) (player.x-80);
 		
-		screen.fill(0, 0, screen.width, screen.height, 0);
+		screen.fill(0, 0, screen.width, 128, 0);
 
-		screen.fill(0, 128, screen.width, screen.height, 3);
+		screen.fill(0, 128, screen.width, 16, 3);
 		
 		for(int i = -1; i < 11; i++){
 			int xo = xScroll/16;

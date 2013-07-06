@@ -8,4 +8,5 @@ public class Asset {
 	public static Bitmap missile = AssetLoader.loadBitmap("/missile.png");
 	public static Bitmap cloud = AssetLoader.loadBitmap("/cloud.png");
 	public static Bitmap exp_ground = AssetLoader.loadBitmap("/exp_ground.png");
+	public static Bitmap exp_air = AssetLoader.loadBitmap("/exp_air.png");
 }

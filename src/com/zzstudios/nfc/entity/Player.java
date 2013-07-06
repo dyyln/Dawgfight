@@ -42,6 +42,8 @@ public class Player extends Entity{
 		if(shootDelay-- <= 0 && input.keyboard.keys[KeyEvent.VK_SPACE]){
 			level.entities.add(new Bullet(x+4, y+4, rotation));
 			shootDelay = 10;
+
+			level.entities.add(new ExplosionAir(x, y));
 		}
 			
 		
@@ -49,7 +51,7 @@ public class Player extends Entity{
 		
 		x += xMove;
 		y -= yMove;
-
+		
 		if(y > 116){
 			y = 116;
 			if(((rotation > 120 || rotation < 60) && (rotation > 300 || rotation < 240))){
@@ -69,7 +71,7 @@ public class Player extends Entity{
 				level.entities.add(new Particle(x+6, y+6, 2));
 				level.entities.add(new Particle(x+6, y+6, 2));
 				level.entities.add(new Particle(x+6, y+6, 2));
-				level.entities.add(new Explosion(x-1, y-4));
+				level.entities.add(new ExplosionGround(x-1, y-4));
 			}
 			if(rotation >= 60 && rotation <= 120){
 				rotation = 90;
