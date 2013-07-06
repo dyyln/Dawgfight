@@ -69,6 +69,7 @@ public class Player extends Entity{
 				level.entities.add(new Particle(x+6, y+6, 2));
 				level.entities.add(new Particle(x+6, y+6, 2));
 				level.entities.add(new Particle(x+6, y+6, 2));
+				level.entities.add(new Explosion(x-1, y-4));
 			}
 			if(rotation >= 60 && rotation <= 120){
 				rotation = 90;
