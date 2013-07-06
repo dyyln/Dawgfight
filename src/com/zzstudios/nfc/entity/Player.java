@@ -39,6 +39,6 @@ public class Player extends Entity{
 	}
 	
 	public void render(Screen screen, Level level, int xScroll){
-		screen.drawRotated(Asset.plane, (int) x, (int) y, 0, 0, 16, 16, (int) -rotation);
+		screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y, 0, 0, 16, 16, (int) -rotation);
 	}
 }

@@ -30,15 +30,21 @@ public class Level {
 	}
 	
 	public void render(Screen screen, InputHandler input){
+		int xScroll = (int) (player.x-80);
+		
 		screen.fill(0, 0, screen.width, screen.height, 0);
 
 		screen.fill(0, 128, screen.width, screen.height, 3);
-		for(int i = 0; i < 10; i++){
-			if(scenary[i]!=0){
-				screen.draw(Asset.tiles, i*16, 112, (scenary[i]-1)*16, 0, 16, 16);
+		for(int i = -1; i < 11; i++){
+			int xo = xScroll/16;
+			int id = i+xo;
+			while(id < 0)id += 128;
+			id = scenary[id];
+			if(id != 0){
+				screen.draw(Asset.tiles, i*16-xScroll%16, 112, (id-1)*16, 0, 16, 16);
 			}
 		}
 		
-		player.render(screen, this, 0);
+		player.render(screen, this, xScroll);
 	}
 }
