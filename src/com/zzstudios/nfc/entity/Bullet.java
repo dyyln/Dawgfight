@@ -44,19 +44,13 @@ public class Bullet extends Entity{
 		
 		for(int i = 0; i < level.entities.size(); i++){
 			Entity e = level.entities.get(i);
-			if(e != owner && !(e instanceof Bullet) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
+			if(e != owner && !(e instanceof Bullet) && !(e instanceof Missile) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
 				if(this.intersects(e)){
 					e.damage(level, 1);
 					removed = true;
 				}
 			}
 		}
-	}
-	
-	private boolean intersects(Entity e) {
-		Rectangle r = new Rectangle((int) x, (int) y, xSize, ySize);
-		Rectangle er = new Rectangle((int) e.x, (int) e.y, e.xSize, e.ySize);
-		return r.intersects(er);
 	}
 
 	public void render(Screen screen, Level level, int xScroll){

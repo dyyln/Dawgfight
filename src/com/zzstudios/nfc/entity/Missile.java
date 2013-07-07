@@ -9,21 +9,24 @@ import com.zzstudios.nfc.level.Level;
 
 public class Missile extends Entity{
 	
-	public Missile(double x, double y, double rotation){
+	public Entity target, owner;
+	
+	public Missile(double x, double y, Entity target, Entity owner){
 		xSize = 2;
 		ySize = 2;
 		this.x = x;
 		this.y = y;
-		this.rotation = rotation;
+		this.target = target;
+		this.owner = owner;
 	}
 	
-	public double speed = 2.0;
+	public double speed = 1.0;
 	
 	public void tick(Level level, InputHandler input){
-
-		if(rotation < 179)rotation += 0.1;
-		if(rotation > 181)rotation -= 0.1;
-		
+		if(target.removed)removed = true;
+        double seekDegrees = Math.toDegrees(Math.atan2(y - target.y, x - target.x))-90;
+        rotation = Asset.lerpDegrees(rotation, seekDegrees, 0.1);
+            
 		double movementAngle = Math.toRadians(rotation);
 		double xMove = (Math.sin(movementAngle) * speed);
 		double yMove = (Math.cos(movementAngle) * speed);
@@ -36,6 +39,16 @@ public class Missile extends Entity{
 			level.entities.add(new Particle(x, y, 2));
 			level.entities.add(new Particle(x, y, 2));
 			level.entities.add(new Particle(x, y, 2));
+		}
+		
+		for(int i = 0; i < level.entities.size(); i++){
+			Entity e = level.entities.get(i);
+			if(e != owner && !(e instanceof Bullet) && !(e instanceof Missile) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
+				if(this.intersects(e)){
+					e.damage(level, 3);
+					removed = true;
+				}
+			}
 		}
 	}
 	

@@ -31,7 +31,7 @@ public class Player extends Entity{
 	}
 	
 	public double speed = 0.0;
-	public int shootDelay;
+	public int shootDelay, missileDelay;
 	public int missiles = 10, health = 25;
 	
 	public void tick(Level level, InputHandler input){
@@ -55,6 +55,15 @@ public class Player extends Entity{
 			shootDelay = 10;
 
 			//level.entities.add(new ExplosionAir(x, y));
+		}
+		
+		if(missileDelay-- <= 0 && missiles > 0){
+			Entity e = level.getClosestEnemy(this, 100.0);
+			if(e != null){
+				missiles--;
+				level.entities.add(new Missile(x+4, y+4, e, this));
+			}
+			missileDelay = 60;
 		}
 			
 		

@@ -32,8 +32,6 @@ public class Level {
 		}
 		entities.add(player);
 		entities.add(new Enemy());
-		entities.add(new Enemy());
-		entities.add(new Enemy());
 	}
 	
 	public void tick(InputHandler input){
@@ -42,7 +40,34 @@ public class Level {
 			e.tick(this, input);
 			if(e.removed)entities.remove(i--);
 		}
+		if(random.nextInt(480)==0){
+			int xScroll = (int) (player.x-80);
+			int offset = random.nextInt(64);
+			Enemy e = new Enemy();
+			if(random.nextBoolean()){
+				e.x = xScroll-16-offset;
+			}else{
+				e.x = xScroll+160+offset;
+			}
+			entities.add(e);
+		}
 	}
+	
+	public Entity getClosestEnemy(Entity origin, double d) {
+        Entity closestEnemy = null;
+        double bestDistSquared = Double.MAX_VALUE;
+        for (Entity e : entities) {
+        	if(!(e instanceof Enemy))continue;
+        	double xd = e.x-origin.x;
+        	double yd = e.y-origin.y;
+            double distSquared = xd*xd+yd*yd;
+            if (distSquared < bestDistSquared && distSquared < d * d) {
+                bestDistSquared = distSquared;
+                closestEnemy = e;
+            }
+        }
+        return closestEnemy;
+    }
 	
 	public void render(Screen screen, InputHandler input){
 		int xScroll = (int) (player.x-80);

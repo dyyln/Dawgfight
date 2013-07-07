@@ -1,5 +1,6 @@
 package com.zzstudios.nfc.entity;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import com.zzstudios.nfc.assets.Screen;
@@ -25,5 +26,11 @@ public class Entity {
 
 	public void damage(Level level, int i) {
 		
+	}
+	
+	public boolean intersects(Entity e) {
+		Rectangle r = new Rectangle((int) x, (int) y, xSize, ySize);
+		Rectangle er = new Rectangle((int) e.x, (int) e.y, e.xSize, e.ySize);
+		return r.intersects(er);
 	}
 }
