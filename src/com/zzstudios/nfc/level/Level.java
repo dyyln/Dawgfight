@@ -48,16 +48,24 @@ public class Level {
 		int xScroll = (int) (player.x-80);
 		
 		screen.fill(0, 0, screen.width, 128, 0);
+		
+		screen.draw(Asset.tiles, -(xScroll/3)%256-256, 96, 0, 16, 256, 32);
+		screen.draw(Asset.tiles, -(xScroll/3)%256, 96, 0, 16, 256, 32);
+		screen.draw(Asset.tiles, -(xScroll/3)%256+256, 96, 0, 16, 256, 32);
+
+		screen.draw(Asset.tiles, -(xScroll/2)%256-256, 104, 0, 48, 256, 24);
+		screen.draw(Asset.tiles, -(xScroll/2)%256, 104, 0, 48, 256, 24);
+		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 104, 0, 48, 256, 24);
 
 		screen.fill(0, 128, screen.width, 16, 3);
 		
 		for(int i = -1; i < 11; i++){
-			int xo = xScroll/16;
+			int xo = (xScroll)/16;
 			int id = i+xo;
 			while(id < 0)id += 128;
 			id = scenary[id%128];
 			if(id != 0){
-				screen.draw(Asset.tiles, i*16-xScroll%16, 112, (id-1)*16, 0, 16, 16);
+				screen.draw(Asset.tiles, i*16-(xScroll)%16, 112, (id-1)*16, 0, 16, 16);
 			}
 		}
 		
@@ -84,12 +92,12 @@ public class Level {
 
 		
 		for(int i = -1; i < 3; i++){
-			int xo = xScroll/96;
+			int xo = (int) ((xScroll*1.2)/96);
 			int id = i+xo;
 			while(id < 0)id += 32;
 			id = clouds[id%32];
 			if(id != 0){
-				screen.draw(Asset.cloud, i*96-xScroll%96+8+id, 5+id*2, 0, 0, 64, 16);
+				screen.draw(Asset.cloud, i*96-((int)(xScroll*1.2))%96+8+id, 5+id*2, 0, 0, 64, 16);
 			}
 		}
 	}
