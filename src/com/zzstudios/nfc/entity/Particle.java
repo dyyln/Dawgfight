@@ -19,6 +19,14 @@ public class Particle extends Entity{
 	
 	public double xSpeed = (random.nextInt(41)-20)*0.1, ySpeed = -2.0-(random.nextInt(10)*0.1);
 	
+	public Particle(double x, double y, int col, double xSpeed, double ySpeed){
+		this.x = x;
+		this.y = y-2;
+		this.col = col;
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
+	}
+	
 	public void tick(Level level, InputHandler input){
 		
 		if(xSpeed > 0.1){

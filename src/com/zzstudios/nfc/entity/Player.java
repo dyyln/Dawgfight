@@ -17,9 +17,22 @@ public class Player extends Entity{
 		rotation = 90;
 	}
 	
+	public void damage(Level level, int i) {
+		health--;
+		level.entities.add(new Particle(x+6, y+6, 2));
+		level.entities.add(new Particle(x+6, y+6, 2));
+		level.entities.add(new Particle(x+6, y+6, 2));
+		level.entities.add(new Particle(x+6, y+6, 2));
+		level.entities.add(new Particle(x+6, y+6, 2));
+		if(health == 0){
+			level.entities.add(new ExplosionAir(x, y));
+			removed = true;
+		}
+	}
+	
 	public double speed = 0.0;
 	public int shootDelay;
-	public int missiles = 10;
+	public int missiles = 10, health = 25;
 	
 	public void tick(Level level, InputHandler input){
 		boolean left = input.keyboard.keys[KeyEvent.VK_LEFT],
@@ -40,7 +53,7 @@ public class Player extends Entity{
 		double yMove = (Math.cos(movementAngle) * speed);
 		
 		if(shootDelay-- <= 0 && input.keyboard.keys[KeyEvent.VK_SPACE]){
-			level.entities.add(new Bullet(x+4, y+4, rotation));
+			level.entities.add(new Bullet(x+4, y+4, rotation, this));
 			shootDelay = 10;
 
 			//level.entities.add(new ExplosionAir(x, y));
