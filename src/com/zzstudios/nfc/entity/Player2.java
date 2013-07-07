@@ -7,12 +7,12 @@ import com.zzstudios.nfc.assets.Screen;
 import com.zzstudios.nfc.input.InputHandler;
 import com.zzstudios.nfc.level.Level;
 
-public class Player extends Entity{
+public class Player2 extends Entity{
 	
-	public Player(){
+	public Player2(){
 		xSize = 8;
 		ySize = 8;
-		x = 80;
+		x = 160;
 		y = 116;
 		rotation = 90;
 	}
@@ -22,9 +22,9 @@ public class Player extends Entity{
 	public int missiles = 10;
 	
 	public void tick(Level level, InputHandler input){
-		boolean left = input.keyboard.keys[KeyEvent.VK_LEFT],
-				right = input.keyboard.keys[KeyEvent.VK_RIGHT],
-				up = input.keyboard.keys[KeyEvent.VK_UP];
+		boolean left = input.keyboard.keys[KeyEvent.VK_A],
+				right = input.keyboard.keys[KeyEvent.VK_D],
+				up = input.keyboard.keys[KeyEvent.VK_W];
 		if(left && speed > 0.5)rotation-=3;
 		if(right && speed > 0.5)rotation+=3;
 		

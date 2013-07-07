@@ -5,8 +5,10 @@ import java.util.Random;
 
 import com.zzstudios.nfc.assets.Asset;
 import com.zzstudios.nfc.assets.Screen;
+import com.zzstudios.nfc.entity.Enemy;
 import com.zzstudios.nfc.entity.Entity;
 import com.zzstudios.nfc.entity.Player;
+import com.zzstudios.nfc.entity.Player2;
 import com.zzstudios.nfc.input.InputHandler;
 
 public class Level {
@@ -30,6 +32,7 @@ public class Level {
 			clouds[i] = random.nextInt(16);
 		}
 		entities.add(player);
+		entities.add(new Player2());
 	}
 	
 	public void tick(InputHandler input){

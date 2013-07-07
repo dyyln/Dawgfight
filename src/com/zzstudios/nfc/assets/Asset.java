@@ -9,4 +9,21 @@ public class Asset {
 	public static Bitmap cloud = AssetLoader.loadBitmap("/cloud.png");
 	public static Bitmap exp_ground = AssetLoader.loadBitmap("/exp_ground.png");
 	public static Bitmap exp_air = AssetLoader.loadBitmap("/exp_air.png");
+	
+	public static double lerpDegrees(double start, double end, double amount) {
+        double difference = Math.abs(end - start);
+        if (difference > 180) {
+            if (end > start) {
+                start += 360;
+            } else {
+                end += 360;
+            }
+        }
+        double value = (start + ((end - start) * amount));
+        double rangeZero = 360;
+        if (value >= 0 && value <= 360) {
+            return value;
+        }
+        return (value % rangeZero);
+    }
 }
