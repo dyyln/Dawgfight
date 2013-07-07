@@ -49,13 +49,13 @@ public class Level {
 		
 		screen.fill(0, 0, screen.width, 128, 0);
 		
-		screen.draw(Asset.tiles, -(xScroll/3)%256-256, 96, 0, 16, 256, 32);
-		screen.draw(Asset.tiles, -(xScroll/3)%256, 96, 0, 16, 256, 32);
-		screen.draw(Asset.tiles, -(xScroll/3)%256+256, 96, 0, 16, 256, 32);
+		screen.draw(Asset.tiles, -(xScroll/3)%256-256, 100, 0, 16, 256, 28);
+		screen.draw(Asset.tiles, -(xScroll/3)%256, 100, 0, 16, 256, 28);
+		screen.draw(Asset.tiles, -(xScroll/3)%256+256, 100, 0, 16, 256, 28);
 
-		screen.draw(Asset.tiles, -(xScroll/2)%256-256, 104, 0, 48, 256, 24);
-		screen.draw(Asset.tiles, -(xScroll/2)%256, 104, 0, 48, 256, 24);
-		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 104, 0, 48, 256, 24);
+		screen.draw(Asset.tiles, -(xScroll/2)%256-256, 108, 0, 48, 256, 20);
+		screen.draw(Asset.tiles, -(xScroll/2)%256, 108, 0, 48, 256, 20);
+		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 108, 0, 48, 256, 20);
 
 		screen.fill(0, 128, screen.width, 16, 3);
 		

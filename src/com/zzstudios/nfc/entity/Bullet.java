@@ -44,7 +44,7 @@ public class Bullet extends Entity{
 		
 		for(int i = 0; i < level.entities.size(); i++){
 			Entity e = level.entities.get(i);
-			if(e != owner && !(e instanceof Bullet) && !removed){
+			if(e != owner && !(e instanceof Bullet) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
 				if(this.intersects(e)){
 					e.damage(level, 1);
 					removed = true;

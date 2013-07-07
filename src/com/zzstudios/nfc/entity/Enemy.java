@@ -28,6 +28,7 @@ public class Enemy extends Entity{
 		if(health == 0){
 			level.entities.add(new ExplosionAir(x, y));
 			removed = true;
+			level.score += 50;
 		}
 	}
 	
@@ -40,12 +41,12 @@ public class Enemy extends Entity{
 	public void tick(Level level, InputHandler input){
 		if(runAway % 3 == 0){
 			if(health < 5){
-				double rot = Math.toRadians(rotation+170+random.nextInt(21));
-				level.entities.add(new Particle(x+6, y+8, 1, Math.sin(rot)*1.5, Math.cos(rot)*-1.5));
+				double rot = Math.toRadians(rotation+160+random.nextInt(41));
+				level.entities.add(new Particle(x+6, y+8, 1, Math.sin(rot)*1.0, Math.cos(rot)*-1.0));
 			}
 			if(health < 3){
-				double rot = Math.toRadians(rotation+170+random.nextInt(21));
-				level.entities.add(new Particle(x+6, y+8, 2, Math.sin(rot)*1.5, Math.cos(rot)*-1.5));
+				double rot = Math.toRadians(rotation+160+random.nextInt(41));
+				level.entities.add(new Particle(x+6, y+8, 2, Math.sin(rot)*1.0, Math.cos(rot)*-1.0));
 			}
 		}
 		

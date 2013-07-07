@@ -38,13 +38,11 @@ public class Player extends Entity{
 		boolean left = input.keyboard.keys[KeyEvent.VK_LEFT],
 				right = input.keyboard.keys[KeyEvent.VK_RIGHT],
 				up = input.keyboard.keys[KeyEvent.VK_UP];
-		if(left && speed > 0.5)rotation-=3;
-		if(right && speed > 0.5)rotation+=3;
+		if(left && y != 116)rotation-=3;
+		if(right && y != 116)rotation+=3;
 		
 		rotation = rotation%360;
 		while(rotation < 0)rotation += 360;
-		
-		
 		
 		if((left || right) && speed > 0.75)speed -= 0.02;
 		
@@ -100,7 +98,15 @@ public class Player extends Entity{
 				}
 			}
 			if(up){
-				if(speed < 1.0)speed += 0.01;
+				if(speed < 1.5){
+					speed += 0.02;
+				}else{
+					if(rotation == 90){
+						rotation -= 5;
+					}else{
+						rotation += 5;
+					}
+				}
 			}
 		}else{
 			if(speed < 1.0)speed += 0.01;
