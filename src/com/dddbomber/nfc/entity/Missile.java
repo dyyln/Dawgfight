@@ -1,7 +1,5 @@
 package com.dddbomber.nfc.entity;
 
-import java.awt.event.KeyEvent;
-
 import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
@@ -20,12 +18,16 @@ public class Missile extends Entity{
 		this.owner = owner;
 	}
 	
-	public double speed = 1.0;
+	public double speed = 1.5;
 	
 	public void tick(Level level, InputHandler input){
-		if(target.removed)removed = true;
-        double seekDegrees = Math.toDegrees(Math.atan2(y - target.y, x - target.x))-90;
-        rotation = Asset.lerpDegrees(rotation, seekDegrees, 0.1);
+		if(target.removed){
+			if(rotation < 179)rotation += 0.1;
+			if(rotation > 181)rotation -= 0.1;
+		}else{
+	        double seekDegrees = Math.toDegrees(Math.atan2(y - target.y, x - target.x))-90;
+	        rotation = Asset.lerpDegrees(rotation, seekDegrees, 0.1);
+		}
             
 		double movementAngle = Math.toRadians(rotation);
 		double xMove = (Math.sin(movementAngle) * speed);
@@ -52,7 +54,7 @@ public class Missile extends Entity{
 		}
 	}
 	
-	public void render(Screen screen, Level level, int xScroll){
-		screen.drawRotated(Asset.bullet, (int) x - xScroll, (int) y, 0, 0, 4, 4, (int) -rotation);
+	public void render(Screen screen, Level level, int xScroll, int yScroll){
+		screen.drawRotated(Asset.bullet, (int) x - xScroll, (int) y - yScroll, 0, 0, 4, 4, (int) -rotation);
 	}
 }

@@ -122,13 +122,13 @@ public class Player extends Entity{
 		}
 	}
 	
-	public void render(Screen screen, Level level, int xScroll){
+	public void render(Screen screen, Level level, int xScroll, int yScroll){
 		if(rotation == 90){
 			screen.draw(Asset.plane, (int) x - xScroll, (int) y, 16, 0, 16, 16);
 		}else if(rotation == 270){
 			screen.draw(Asset.plane, (int) x - xScroll, (int) y, 32, 0, 16, 16);
 		}else{
-			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y, (rotation > 180 ? 64 : 48), 0, 16, 16, (int) -rotation);
+			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y - yScroll, (rotation > 180 ? 64 : 48), 0, 16, 16, (int) -rotation);
 		}
 	}
 }

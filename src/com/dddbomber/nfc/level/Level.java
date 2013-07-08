@@ -71,18 +71,20 @@ public class Level {
 	
 	public void render(Screen screen, InputHandler input){
 		int xScroll = (int) (player.x-80);
+		int yScroll = (int) (player.y-36);
+		if(yScroll > 0)yScroll = 0;
 		
-		screen.fill(0, 0, screen.width, 128, 0);
+		screen.fill(0, 0, screen.width, 144, 0);
 		
-		screen.draw(Asset.tiles, -(xScroll/3)%256-256, 100, 0, 16, 256, 28);
-		screen.draw(Asset.tiles, -(xScroll/3)%256, 100, 0, 16, 256, 28);
-		screen.draw(Asset.tiles, -(xScroll/3)%256+256, 100, 0, 16, 256, 28);
+		screen.draw(Asset.tiles, -(xScroll/3)%256-256, 100-yScroll/3, 0, 16, 256, 28);
+		screen.draw(Asset.tiles, -(xScroll/3)%256, 100-yScroll/3, 0, 16, 256, 28);
+		screen.draw(Asset.tiles, -(xScroll/3)%256+256, 100-yScroll/3, 0, 16, 256, 28);
 
-		screen.draw(Asset.tiles, -(xScroll/2)%256-256, 108, 0, 48, 256, 20);
-		screen.draw(Asset.tiles, -(xScroll/2)%256, 108, 0, 48, 256, 20);
-		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 108, 0, 48, 256, 20);
+		screen.draw(Asset.tiles, -(xScroll/2)%256-256, 108-yScroll/2, 0, 48, 256, 20);
+		screen.draw(Asset.tiles, -(xScroll/2)%256, 108-yScroll/2, 0, 48, 256, 20);
+		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 108-yScroll/2, 0, 48, 256, 20);
 
-		screen.fill(0, 128, screen.width, 16, 3);
+		screen.fill(0, 128-yScroll, screen.width, 16, 3);
 		
 		for(int i = -1; i < 11; i++){
 			int xo = (xScroll)/16;
@@ -90,13 +92,25 @@ public class Level {
 			while(id < 0)id += 128;
 			id = scenary[id%128];
 			if(id != 0){
-				screen.draw(Asset.tiles, i*16-(xScroll)%16, 112, (id-1)*16, 0, 16, 16);
+				screen.draw(Asset.tiles, i*16-(xScroll)%16, 112-yScroll, (id-1)*16, 0, 16, 16);
 			}
 		}
 		
 		for(Entity e : entities){
-			e.render(screen, this, xScroll);
+			e.render(screen, this, xScroll, yScroll);
 		}
+
+		for(int i = -1; i < 3; i++){
+			int xo = (int) ((xScroll*1.5)/96);
+			int id = i+xo;
+			while(id < 0)id += 32;
+			id = clouds[id%32];
+			if(id != 0){
+				screen.draw(Asset.cloud, i*96-((int)(xScroll*1.5))%96+8+id, 5+id*2-(int)(yScroll*1.5), 0, 0, 64, 16);
+			}
+		}
+		
+		screen.fill(0, 128, screen.width, 16, 3);
 		
 		String msg = "" +score;
 		int toAdd = 8-msg.length();
@@ -113,17 +127,6 @@ public class Level {
 		if(player.y == 116){
 			msg = "PRESS UP TO TAKE OFF";
 			screen.draw(msg, 80-msg.length()*3, 2, 3, 1);
-		}
-
-		
-		for(int i = -1; i < 3; i++){
-			int xo = (int) ((xScroll*1.2)/96);
-			int id = i+xo;
-			while(id < 0)id += 32;
-			id = clouds[id%32];
-			if(id != 0){
-				screen.draw(Asset.cloud, i*96-((int)(xScroll*1.2))%96+8+id, 5+id*2, 0, 0, 64, 16);
-			}
 		}
 	}
 }

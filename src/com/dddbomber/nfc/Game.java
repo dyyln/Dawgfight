@@ -8,17 +8,14 @@ import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
-import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
-import java.lang.reflect.Method;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Render;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;

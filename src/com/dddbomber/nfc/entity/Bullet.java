@@ -1,8 +1,5 @@
 package com.dddbomber.nfc.entity;
 
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-
 import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
@@ -53,7 +50,7 @@ public class Bullet extends Entity{
 		}
 	}
 
-	public void render(Screen screen, Level level, int xScroll){
-		screen.drawRotated(Asset.bullet, (int) x - xScroll, (int) y, 0, 0, 4, 4, (int) -rotation);
+	public void render(Screen screen, Level level, int xScroll, int yScroll){
+		screen.drawRotated(Asset.bullet, (int) x - xScroll, (int) y - yScroll, 0, 0, 4, 4, (int) -rotation);
 	}
 }

@@ -1,8 +1,5 @@
 package com.dddbomber.nfc.entity;
 
-import java.awt.event.KeyEvent;
-
-import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
@@ -49,7 +46,7 @@ public class Particle extends Entity{
 		if(y > 124)removed = true;
 	}
 	
-	public void render(Screen screen, Level level, int xScroll){
-		screen.fill((int) x - xScroll, (int) y, 1, 1, col);
+	public void render(Screen screen, Level level, int xScroll, int yScroll){
+		screen.fill((int) x - xScroll, (int) y - yScroll, 1, 1, col);
 	}
 }

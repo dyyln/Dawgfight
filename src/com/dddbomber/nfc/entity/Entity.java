@@ -20,7 +20,7 @@ public class Entity {
 		
 	}
 	
-	public void render(Screen screen, Level level, int xScroll){
+	public void render(Screen screen, Level level, int xScroll, int yScroll){
 		
 	}
 
