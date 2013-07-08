@@ -1,14 +1,14 @@
-package com.zzstudios.nfc.level;
+package com.dddbomber.nfc.level;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.zzstudios.nfc.assets.Asset;
-import com.zzstudios.nfc.assets.Screen;
-import com.zzstudios.nfc.entity.Enemy;
-import com.zzstudios.nfc.entity.Entity;
-import com.zzstudios.nfc.entity.Player;
-import com.zzstudios.nfc.input.InputHandler;
+import com.dddbomber.nfc.assets.Asset;
+import com.dddbomber.nfc.assets.Screen;
+import com.dddbomber.nfc.entity.Enemy;
+import com.dddbomber.nfc.entity.Entity;
+import com.dddbomber.nfc.entity.Player;
+import com.dddbomber.nfc.input.InputHandler;
 
 public class Level {
 	

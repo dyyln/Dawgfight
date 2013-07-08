@@ -1,4 +1,4 @@
-package com.zzstudios.nfc.assets;
+package com.dddbomber.nfc.assets;
 
 import java.awt.image.BufferedImage;
 import java.net.HttpURLConnection;

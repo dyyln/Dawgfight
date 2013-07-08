@@ -1,4 +1,4 @@
-package com.zzstudios.nfc;
+package com.dddbomber.nfc;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -18,11 +18,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.zzstudios.nfc.assets.Asset;
-import com.zzstudios.nfc.assets.Render;
-import com.zzstudios.nfc.assets.Screen;
-import com.zzstudios.nfc.input.InputHandler;
-import com.zzstudios.nfc.level.Level;
+import com.dddbomber.nfc.assets.Asset;
+import com.dddbomber.nfc.assets.Render;
+import com.dddbomber.nfc.assets.Screen;
+import com.dddbomber.nfc.input.InputHandler;
+import com.dddbomber.nfc.level.Level;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;

@@ -1,11 +1,11 @@
-package com.zzstudios.nfc.entity;
+package com.dddbomber.nfc.entity;
 
 import java.awt.Rectangle;
 import java.util.Random;
 
-import com.zzstudios.nfc.assets.Screen;
-import com.zzstudios.nfc.input.InputHandler;
-import com.zzstudios.nfc.level.Level;
+import com.dddbomber.nfc.assets.Screen;
+import com.dddbomber.nfc.input.InputHandler;
+import com.dddbomber.nfc.level.Level;
 
 public class Entity {
 	public double x, y, rotation;

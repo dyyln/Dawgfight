@@ -1,4 +1,4 @@
-package com.zzstudios.nfc.input;
+package com.dddbomber.nfc.input;
 
 import java.awt.Canvas;
 

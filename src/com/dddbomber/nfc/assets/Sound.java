@@ -1,4 +1,4 @@
-package com.zzstudios.nfc.assets;
+package com.dddbomber.nfc.assets;
 
 import java.applet.Applet;
 import java.applet.AudioClip;

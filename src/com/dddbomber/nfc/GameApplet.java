@@ -1,4 +1,4 @@
-package com.zzstudios.nfc;
+package com.dddbomber.nfc;
 
 import java.applet.Applet;
 import java.awt.BorderLayout;

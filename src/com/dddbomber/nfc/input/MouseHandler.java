@@ -1,11 +1,11 @@
-package com.zzstudios.nfc.input;
+package com.dddbomber.nfc.input;
 
 import java.awt.Canvas;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import com.zzstudios.nfc.Game;
+import com.dddbomber.nfc.Game;
 
 public class MouseHandler implements MouseListener, MouseMotionListener{
 	

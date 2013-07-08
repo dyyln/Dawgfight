@@ -1,4 +1,4 @@
-package com.zzstudios.nfc.assets;
+package com.dddbomber.nfc.assets;
 
 public class Bitmap {
 	public final int width, height;

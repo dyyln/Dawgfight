@@ -1,33 +1,32 @@
-package com.zzstudios.nfc.entity;
+package com.dddbomber.nfc.entity;
 
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
-import com.zzstudios.nfc.assets.Asset;
-import com.zzstudios.nfc.assets.Screen;
-import com.zzstudios.nfc.input.InputHandler;
-import com.zzstudios.nfc.level.Level;
+import com.dddbomber.nfc.assets.Asset;
+import com.dddbomber.nfc.assets.Screen;
+import com.dddbomber.nfc.input.InputHandler;
+import com.dddbomber.nfc.level.Level;
 
-public class Bullet extends Entity{
+public class Missile extends Entity{
 	
-	public Entity owner;
+	public Entity target, owner;
 	
-	public Bullet(double x, double y, double rotation, Entity owner){
+	public Missile(double x, double y, Entity target, Entity owner){
 		xSize = 2;
 		ySize = 2;
 		this.x = x;
 		this.y = y;
-		this.rotation = rotation;
+		this.target = target;
 		this.owner = owner;
 	}
 	
-	public double speed = 2.0;
+	public double speed = 1.0;
 	
 	public void tick(Level level, InputHandler input){
-
-		if(rotation < 179)rotation += 0.1;
-		if(rotation > 181)rotation -= 0.1;
-		
+		if(target.removed)removed = true;
+        double seekDegrees = Math.toDegrees(Math.atan2(y - target.y, x - target.x))-90;
+        rotation = Asset.lerpDegrees(rotation, seekDegrees, 0.1);
+            
 		double movementAngle = Math.toRadians(rotation);
 		double xMove = (Math.sin(movementAngle) * speed);
 		double yMove = (Math.cos(movementAngle) * speed);
@@ -46,13 +45,13 @@ public class Bullet extends Entity{
 			Entity e = level.entities.get(i);
 			if(e != owner && !(e instanceof Bullet) && !(e instanceof Missile) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
 				if(this.intersects(e)){
-					e.damage(level, 1);
+					e.damage(level, 3);
 					removed = true;
 				}
 			}
 		}
 	}
-
+	
 	public void render(Screen screen, Level level, int xScroll){
 		screen.drawRotated(Asset.bullet, (int) x - xScroll, (int) y, 0, 0, 4, 4, (int) -rotation);
 	}
