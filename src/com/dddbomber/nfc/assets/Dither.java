@@ -29,7 +29,7 @@ public class Dither {
 				int yd = y+yp;
 				if(yd >= screen.height || yd < 0)continue;
 				
-				screen.pixels[xd + yd * screen.width] = Bitmap.cols[baseCol+matrix[x+y*3]];
+				screen.pixels[xd + yd * screen.width] = Bitmap.cols[baseCol+matrix[xp+yp*3]];
 			}
 		}
 	}

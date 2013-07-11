@@ -33,7 +33,18 @@ public class Bitmap {
 		}
 	}
 	
-	public static ArrayList<Dither> dithers = new ArrayList<Dither>();
+	public static ArrayList<Dither> dithers = loadDithers();
+	
+	public static ArrayList<Dither> loadDithers(){
+		ArrayList<Dither> dithers = new ArrayList<Dither>();
+
+		for(int i = 0; i < 9; i++){
+			Dither d = new Dither(i);
+			dithers.add(d);
+		}
+		
+		return dithers;
+	}
 	
 	public void renderLight(int x, int y, int r) {
 		int x0 = x - r;

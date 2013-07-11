@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.dddbomber.nfc.assets.Asset;
+import com.dddbomber.nfc.assets.Bitmap;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.entity.Enemy;
 import com.dddbomber.nfc.entity.Entity;
@@ -85,6 +86,18 @@ public class Level {
 		screen.draw(Asset.tiles, -(xScroll/2)%256+256, 108-yScroll/2, 0, 48, 256, 20);
 
 		screen.fill(0, 128-yScroll, screen.width, 16, 3);
+
+		for(int i = -1; i < (screen.height)/3; i++){
+			for(int x = -1; x < screen.width/3+1; x++){
+				int yo = (-yScroll/3)+i-48;
+				if(yo < 0)continue;
+				if((yo/2) >= 18){
+					screen.fill(x*3-xScroll%3, screen.height-24-i*3-yScroll%3, 3, 3, 2);
+					continue;
+				}
+				Bitmap.dithers.get((yo/2)%9).render(screen, x*3-xScroll%3, screen.height-24-i*3-yScroll%3, (yo/2)/9);
+			}
+		}
 		
 		for(int i = -1; i < 11; i++){
 			int xo = (xScroll)/16;
