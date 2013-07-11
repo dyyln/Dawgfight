@@ -1,5 +1,8 @@
 package com.dddbomber.nfc.assets;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 public class Bitmap {
 	public final int width, height;
 	public int[] pixels;
@@ -29,6 +32,8 @@ public class Bitmap {
 
 		}
 	}
+	
+	public static ArrayList<Dither> dithers = new ArrayList<Dither>();
 	
 	public void renderLight(int x, int y, int r) {
 		int x0 = x - r;

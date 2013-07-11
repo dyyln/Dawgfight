@@ -131,7 +131,7 @@ public class Enemy extends Entity{
 		x += xMove;
 		y -= yMove;
 
-		if(speed < 0.8)speed += 0.01;
+		if(speed < 1.4)speed += 0.01;
 	}
 
 	public int xScroll;

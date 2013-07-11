@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	public static int WIDTH = 160, HEIGHT = 144;
 	public static int SCREENWIDTH = 320, SCREENHEIGHT = 288;
-	public static final String NAME = "Dawgfight";
+	public static final String NAME = "Jet With It";
 
 	public Render render;
 	public Screen screen;

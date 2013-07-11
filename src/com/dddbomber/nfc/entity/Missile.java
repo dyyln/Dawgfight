@@ -18,7 +18,7 @@ public class Missile extends Entity{
 		this.owner = owner;
 	}
 	
-	public double speed = 1.5;
+	public double speed = 0.5;
 	
 	public void tick(Level level, InputHandler input){
 		if(target.removed){
@@ -32,6 +32,9 @@ public class Missile extends Entity{
 		double movementAngle = Math.toRadians(rotation);
 		double xMove = (Math.sin(movementAngle) * speed);
 		double yMove = (Math.cos(movementAngle) * speed);
+		
+		speed += 0.01;
+		if(speed >= 3.0)removed = true;
 		
 		x += xMove;
 		y -= yMove;

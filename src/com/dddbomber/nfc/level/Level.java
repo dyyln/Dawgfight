@@ -101,12 +101,12 @@ public class Level {
 		}
 
 		for(int i = -1; i < 3; i++){
-			int xo = (int) ((xScroll*1.5)/96);
+			int xo = (xScroll/96);
 			int id = i+xo;
 			while(id < 0)id += 32;
 			id = clouds[id%32];
 			if(id != 0){
-				screen.draw(Asset.cloud, i*96-((int)(xScroll*1.5))%96+8+id, 5+id*2-(int)(yScroll*1.5), 0, 0, 64, 16);
+				screen.draw(Asset.cloud, i*96-xScroll%96+8+id, 5+id*2-yScroll, 0, 0, 64, 16);
 			}
 		}
 		

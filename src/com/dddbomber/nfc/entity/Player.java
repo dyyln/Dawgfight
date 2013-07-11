@@ -43,7 +43,6 @@ public class Player extends Entity{
 		
 		rotation = rotation%360;
 		while(rotation < 0)rotation += 360;
-		
 		if((left || right) && speed > 0.75)speed -= 0.02;
 		
 		double movementAngle = Math.toRadians(rotation);
@@ -118,7 +117,7 @@ public class Player extends Entity{
 				}
 			}
 		}else{
-			if(speed < 1.0)speed += 0.01;
+			if(speed < 1.5)speed += 0.01;
 		}
 	}
 	
