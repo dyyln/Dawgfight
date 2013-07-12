@@ -32,7 +32,7 @@ public class Level {
 			clouds[i] = random.nextInt(16);
 		}
 		entities.add(player);
-		entities.add(new Enemy());
+		//entities.add(new Enemy());
 	}
 	
 	public void tick(InputHandler input){
@@ -50,7 +50,7 @@ public class Level {
 			}else{
 				e.x = xScroll+160+offset;
 			}
-			entities.add(e);
+			//entities.add(e);
 		}
 	}
 	
@@ -74,6 +74,7 @@ public class Level {
 		int xScroll = (int) (player.x-80);
 		int yScroll = (int) (player.y-36);
 		if(yScroll > 0)yScroll = 0;
+		if(yScroll < -180)yScroll = -180;
 		
 		screen.fill(0, 0, screen.width, 144, 0);
 		
@@ -87,7 +88,7 @@ public class Level {
 
 		screen.fill(0, 128-yScroll, screen.width, 16, 3);
 
-		for(int i = -1; i < (screen.height)/3; i++){
+		for(int i = -1; i < (screen.height)/3+1; i++){
 			for(int x = -1; x < screen.width/3+1; x++){
 				int yo = (-yScroll/3)+i-48;
 				if(yo < 0)continue;

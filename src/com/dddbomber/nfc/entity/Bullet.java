@@ -18,7 +18,7 @@ public class Bullet extends Entity{
 		this.owner = owner;
 	}
 	
-	public double speed = 2.0;
+	public double speed = 2.1;
 	
 	public void tick(Level level, InputHandler input){
 

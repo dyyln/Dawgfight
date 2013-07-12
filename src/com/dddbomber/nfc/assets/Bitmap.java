@@ -69,7 +69,7 @@ public class Bitmap {
 			}
 		}
 	}
-	
+
 	public void draw(Bitmap image, int xPos, int yPos, int xo, int yo, int w , int h){
 		for(int y = 0; y < h; y++){
 			int yPix = y+yPos;
@@ -80,6 +80,20 @@ public class Bitmap {
 				
 				int src = image.pixels[(x+xo) + (y+yo) * image.width];
 				if(src != -2)pixels[xPix + yPix * width] = src;
+			}
+		}
+	}
+	
+	public void drawDithered(Bitmap image, int xPos, int yPos, int xo, int yo, int w , int h, int dithering){
+		for(int y = 0; y < h; y++){
+			int yPix = y+yPos;
+			if(yPix < 0 || yPix >= height)continue;
+			for(int x = 0; x < w; x++){
+				int xPix = x+xPos;
+				if(xPix < 0 || xPix >= width)continue;
+				
+				int src = image.pixels[(x+xo) + (y+yo) * image.width];
+				if(src != -2 && dithers.get(dithering).matrix[(xPix%3) + (yPix%3) * 3] == 0)pixels[xPix + yPix * width] = src;
 			}
 		}
 	}

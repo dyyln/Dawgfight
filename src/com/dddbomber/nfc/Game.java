@@ -20,6 +20,7 @@ import com.dddbomber.nfc.assets.Render;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.menu.Menu;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
@@ -93,7 +94,8 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		level.render(screen, input);
+		//level.render(screen, input);
+		Menu.render(screen);
 		
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
 		
@@ -103,18 +105,17 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
 	
-	public Level level = new Level();
+	//public Level level = new Level();
 	
 	public boolean pressed = false;
 	
 	Random random = new Random();
-	
-	public int[] tiles = {random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5), random.nextInt(5)};
 
 	private void tick() {
 		ticks++;
 		if(!input.focus.hasFocus)return;
-		level.tick(input);
+		//level.tick(input);
+		Menu.tick(input);
 		if(input.keyboard.keys[KeyEvent.VK_ESCAPE]){
 			System.exit(0);
 		}
