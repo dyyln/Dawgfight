@@ -45,7 +45,7 @@ public class Gun extends Entity{
 			rotation = rotation%360;
 			shootDelay--;
 			if(shootDelay <= 10 && shootDelay % 5 == 0  && rotation > target-10 && rotation < target+10){
-				level.entities.add(new Bullet(x+4, y+4, rotation+180, this));
+				level.entities.add(new Bullet(x+4, y+4, rotation+180, this, 2.1));
 			}
 			if(shootDelay <= 0)shootDelay = 90;
 

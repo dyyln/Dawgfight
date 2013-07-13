@@ -52,7 +52,7 @@ public class Level {
 			}else{
 				e.x = xScroll+160+offset;
 			}
-			entities.add(e);
+			//entities.add(e);
 		}
 	}
 	

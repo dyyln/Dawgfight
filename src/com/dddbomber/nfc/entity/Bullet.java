@@ -9,7 +9,7 @@ public class Bullet extends Entity{
 	
 	public Entity owner;
 	
-	public Bullet(double x, double y, double rotation, Entity owner){
+	public Bullet(double x, double y, double rotation, Entity owner, double speed){
 		xSize = 2;
 		ySize = 2;
 		this.x = x;

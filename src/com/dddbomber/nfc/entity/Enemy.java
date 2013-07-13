@@ -80,7 +80,7 @@ public class Enemy extends Entity{
 				}
 			}
 			if(shootDelay-- <= 0 && rotation > target-10 && rotation < target+10){
-				level.entities.add(new Bullet(x+4, y+4, rotation, this));
+				level.entities.add(new Bullet(x+4, y+4, rotation, this, speed+1.0));
 				shootDelay = 30;
 
 				//level.entities.add(new ExplosionAir(x, y));

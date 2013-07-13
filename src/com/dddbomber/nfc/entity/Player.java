@@ -50,7 +50,7 @@ public class Player extends Entity{
 		double yMove = (Math.cos(movementAngle) * speed);
 		
 		if(shootDelay-- <= 0 && input.keyboard.keys[KeyEvent.VK_SPACE]){
-			level.entities.add(new Bullet(x+4, y+4, rotation, this));
+			level.entities.add(new Bullet(x+4, y+4, rotation, this, speed+1.0));
 			shootDelay = 10;
 
 			//level.entities.add(new ExplosionAir(x, y));
