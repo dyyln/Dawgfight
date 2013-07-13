@@ -94,8 +94,7 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		level.render(screen, input);
-		//Menu.render(screen);
+		Menu.menu.render(screen);
 		
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
 		
@@ -105,8 +104,6 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
 	
-	public Level level = new Level();
-	
 	public boolean pressed = false;
 	
 	Random random = new Random();
@@ -114,8 +111,7 @@ public class Game extends Canvas implements Runnable{
 	private void tick() {
 		ticks++;
 		if(!input.focus.hasFocus)return;
-		level.tick(input);
-		Menu.tick(input);
+		Menu.menu.tick(input);
 		if(input.keyboard.keys[KeyEvent.VK_ESCAPE]){
 			System.exit(0);
 		}
