@@ -8,6 +8,7 @@ import com.dddbomber.nfc.assets.Bitmap;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.entity.Enemy;
 import com.dddbomber.nfc.entity.Entity;
+import com.dddbomber.nfc.entity.Gun;
 import com.dddbomber.nfc.entity.Player;
 import com.dddbomber.nfc.input.InputHandler;
 
@@ -32,7 +33,8 @@ public class Level {
 			clouds[i] = random.nextInt(16);
 		}
 		entities.add(player);
-		//entities.add(new Enemy());
+		entities.add(new Enemy());
+		entities.add(new Gun());
 	}
 	
 	public void tick(InputHandler input){
@@ -50,7 +52,7 @@ public class Level {
 			}else{
 				e.x = xScroll+160+offset;
 			}
-			//entities.add(e);
+			entities.add(e);
 		}
 	}
 	

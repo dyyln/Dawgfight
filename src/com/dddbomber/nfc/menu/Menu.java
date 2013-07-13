@@ -20,7 +20,11 @@ public class Menu {
 	}
 	
 	private static void tickIntro(InputHandler input){
-		if(introTicks < 360)introTicks++;
+		if(introTicks < 580){
+			introTicks++;
+		}else{
+			introTicks = 520;
+		}
 		if(input.keyboard.keys[KeyEvent.VK_SPACE])setupIntro();
 	}
 	
@@ -29,15 +33,17 @@ public class Menu {
 			renderIntro(screen);
 		}
 	}
-	
+
 	public static final String name = "MADE BY DDDBOMBER";
+	public static final String altName = "DYLAN DHOKIA";
 	
 	private static void renderIntro(Screen screen){
 		screen.fill(0, 0, screen.width, screen.height, 0);
 		
 		Bitmap b = new Bitmap(screen.width, screen.height);
 		b.fill(0, 0, b.width, b.height, 0);
-		b.draw(name, b.width/2-name.length()*3, screen.height-12, 3, 1);
+		b.draw(name, b.width/2-name.length()*3, screen.height-16, 3, 1);
+		b.draw(altName, b.width/2-altName.length()*3, screen.height-8, 3, 1);
 		b.draw(Asset.avatar, 0, 0, 0, 0, 160, 128);
 		
 		int ticks = introTicks;
@@ -52,6 +58,15 @@ public class Menu {
 		if(introTicks > 240){
 			if(introTicks < 348){
 				screen.drawDithered(nb, 0, 0, 0, 0, nb.width, nb.height, (introTicks-240)/12);
+			}else if(introTicks > 360){
+				int yo = introTicks;
+				if(yo > 520)yo = 520;
+				screen.draw(Asset.title, screen.width/2-64, (yo-510), 0, 0, 128, 96);
+				if(introTicks >= 520){
+					String msg = "PRESS ANY BUTTON TO BEGIN";
+					if(introTicks % 60 <= 40)screen.draw(msg, screen.width/2-msg.length()*3, 128, 3, 1);
+					introDone = true;
+				}
 			}
 		}else{
 			screen.draw(nb, 0, 0, 0, 0, nb.width, nb.height);
@@ -68,11 +83,12 @@ public class Menu {
 		}
 	}
 	
-	private static int introFrame = 0, introTicks = 0, introTarget = 129;
+	private static int introTicks = 0;
+	private static boolean introDone = false;
 
 	private static void setupIntro() {
-		introFrame = introTicks = 0;
-		introTarget = 129;
+		introTicks = 0;
+		introDone = false;
 	}
 	
 	private static void setupMainmenu() {

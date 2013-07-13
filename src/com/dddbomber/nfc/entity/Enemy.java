@@ -139,11 +139,11 @@ public class Enemy extends Entity{
 	public void render(Screen screen, Level level, int xScroll, int yScroll){
 		this.xScroll = xScroll;
 		if(rotation == 90){
-			screen.draw(Asset.plane, (int) x - xScroll, (int) y, 16, 0, 16, 16);
+			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 16, 16, 16, 16);
 		}else if(rotation == 270){
-			screen.draw(Asset.plane, (int) x - xScroll, (int) y, 32, 0, 16, 16);
+			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 32, 16, 16, 16);
 		}else{
-			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y - yScroll, (rotation > 180 ? 64 : 48), 0, 16, 16, (int) -rotation);
+			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y - yScroll, (rotation > 180 ? 64 : 48), 16, 16, 16, (int) -rotation);
 		}
 	}
 }
