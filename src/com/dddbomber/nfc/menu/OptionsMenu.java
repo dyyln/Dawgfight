@@ -2,9 +2,12 @@ package com.dddbomber.nfc.menu;
 
 import java.awt.event.KeyEvent;
 
+import kuusisto.tinysound.TinySound;
+
 import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class OptionsMenu extends Menu {
 
@@ -26,7 +29,6 @@ public class OptionsMenu extends Menu {
 		}else{
 			if(ticks < 96){
 				ticks++;
-			}else{
 				return;
 			}
 
@@ -45,9 +47,21 @@ public class OptionsMenu extends Menu {
 			
 			if(input.keyboard.keys[KeyEvent.VK_SPACE]){
 				if(selected == 3)back = true;
-				if(selected == 2)music = !music;
+				if(selected == 2){
+					music = !music;
+					if(music){
+						SoundPlayer.music.play(true, 0.25);
+					}else{
+						SoundPlayer.music.stop();
+					}
+				}
 				if(selected == 1)sounds = !sounds;
 				if(selected == 0)clearProgress();
+				if(sounds){
+					TinySound.setGlobalVolume(1.0);
+				}else{
+					TinySound.setGlobalVolume(0.0);
+				}
 				moveDelay = 20;
 			}
 		}

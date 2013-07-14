@@ -53,6 +53,9 @@ public class GameMenu extends Menu {
 		if(timerAttached){
 			timer++;
 		}
+		if(level.player.removed){
+			Menu.menu = PlayMenu.instance;
+		}
 		if(level.complete){
 			mission.complete[1] = true;
 			Menu.menu = PlayMenu.instance;
@@ -64,11 +67,11 @@ public class GameMenu extends Menu {
 					if(seconds < 20)mission.complete[2] = true; 
 				}
 			}
-			if(id == 2){
+			if(id == 2 || id == 3 || id == 7){
 				if(level.player.health > 10)mission.complete[0] = true;
 				if(level.player.health > 15)mission.complete[2] = true;
 			}
-			if(id == 3){
+			if(id == 4 || id == 5 || id == 6){
 				if(level.freindlies > 0)mission.complete[0] = true;
 				if(level.freindlies > 1)mission.complete[2] = true;
 			}

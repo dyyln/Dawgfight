@@ -24,9 +24,11 @@ public class PlayMenu extends Menu {
 		missions[3].name = "Anti Anti Aircraft";
 		missions[4].name = "Sqaud Fight";
 		missions[5].name = "Enemy Territory";
-		missions[6].name = "Base Assault";
-		missions[7].name = "Base vs Base";
-		missions[8].name = "Full Assualt";
+		missions[6].name = "Air To Ground";
+		missions[7].name = "Double Team";
+		missions[8].name = "Base Assault";
+		missions[9].name = "Base vs Base";
+		missions[10].name = "Full Assualt";
 
 		missions[0].type.add(MissionType.cleared);
 		missions[0].type.add(MissionType.hoops);
@@ -48,6 +50,15 @@ public class PlayMenu extends Menu {
 		missions[5].type.add(MissionType.enemy);
 		missions[5].type.add(MissionType.freindly);
 		missions[5].type.add(MissionType.freindly);
+
+		missions[6].type.add(MissionType.cleared);
+		missions[6].type.add(MissionType.aagun);
+		missions[6].type.add(MissionType.aagun);
+		missions[6].type.add(MissionType.aagun);
+		missions[6].type.add(MissionType.freindly);
+		missions[6].type.add(MissionType.freindly);
+
+		missions[7].type.add(MissionType.enemy);
 	}
 
 	public int moveDelay = 15;

@@ -4,6 +4,7 @@ import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class Hoop extends Entity {
 
@@ -17,7 +18,10 @@ public class Hoop extends Entity {
 	public void tick(Level level, InputHandler input){
 		if(anim > 0){
 			anim--;
-			if(anim == 0)removed = true;
+			if(anim == 0){
+				removed = true;
+				SoundPlayer.ring.play(0.75);
+			}
 			return;
 		}
 		xSize = 16;

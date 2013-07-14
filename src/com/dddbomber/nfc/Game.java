@@ -160,6 +160,8 @@ public class Game extends Canvas implements Runnable{
     	}
 		
 		game.start();
+		
+		SoundPlayer.music.play(true, 0.25);
 	}
 	
 	private Thread gameThread;

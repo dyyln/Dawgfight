@@ -17,7 +17,7 @@ public class Bullet extends Entity{
 		this.y = y;
 		this.rotation = rotation;
 		this.owner = owner;
-		SoundPlayer.shoot.play();
+		SoundPlayer.shoot.play(0.5);
 	}
 	
 	public double speed = 2.1;
@@ -47,7 +47,7 @@ public class Bullet extends Entity{
 				if(this.intersects(e)){
 					e.damage(level, 1);
 					removed = true;
-					SoundPlayer.death.play(0.5);
+					SoundPlayer.death.play(0.15);
 				}
 			}
 		}

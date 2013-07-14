@@ -1,11 +1,13 @@
 package com.dddbomber.nfc.sound;
 
+import kuusisto.tinysound.Music;
 import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
 
 public class SoundPlayer {
 	
-	public static Sound shoot, hit, death, ground, missile;
+	public static Music music;
+	public static Sound shoot, hit, death, ground, missile, ring;
 	
 	public static void initSounds() {
 		TinySound.init();
@@ -14,5 +16,8 @@ public class SoundPlayer {
 		death = TinySound.loadSound("death.wav");
 		missile = TinySound.loadSound("missile.wav");
 		ground = TinySound.loadSound("ground.wav");
+		ring = TinySound.loadSound("ring.wav");
+		
+		music = TinySound.loadMusic("music.wav");
 	}
 }
