@@ -11,6 +11,7 @@ import com.dddbomber.nfc.entity.Entity;
 import com.dddbomber.nfc.entity.Gun;
 import com.dddbomber.nfc.entity.Hoop;
 import com.dddbomber.nfc.entity.Player;
+import com.dddbomber.nfc.entity.Target;
 import com.dddbomber.nfc.input.InputHandler;
 
 public class Level {
@@ -46,7 +47,7 @@ public class Level {
 			Entity e = entities.get(i);
 			e.tick(this, input);
 			if(e.removed)entities.remove(i--);
-			if(e instanceof Enemy || e instanceof Gun || e instanceof Hoop){
+			if(e instanceof Enemy || e instanceof Gun || e instanceof Hoop || e instanceof Target){
 				left++;
 			}
 		}

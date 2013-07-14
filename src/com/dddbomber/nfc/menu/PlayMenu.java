@@ -31,6 +31,10 @@ public class PlayMenu extends Menu {
 		missions[0].type.add(MissionType.cleared);
 		missions[0].type.add(MissionType.hoops);
 		missions[0].type.add(MissionType.timed);
+		
+		missions[1].type.add(MissionType.cleared);
+		missions[1].type.add(MissionType.targets);
+		missions[1].type.add(MissionType.timed);
 	}
 
 	public int moveDelay;

@@ -33,6 +33,11 @@ public class GameMenu extends Menu {
 					level.entities.add(new Hoop(i*24+160));
 				}
 			}
+			if(t == MissionType.targets){
+				for(int i = 0; i < 25; i++){
+					level.entities.add(new Target(i*24+160));
+				}
+			}
 			if(t == MissionType.timed){
 				timerAttached = true;
 			}
@@ -51,9 +56,9 @@ public class GameMenu extends Menu {
 			if(timerAttached){
 				int seconds = timer/60;
 				System.out.println(seconds);
-				if(id == 0){
-					if(seconds < 45)mission.complete[0] = true;
-					if(seconds < 30)mission.complete[2] = true; 
+				if(id <= 1){
+					if(seconds < 30)mission.complete[0] = true;
+					if(seconds < 20)mission.complete[2] = true; 
 				}
 			}
 		}
