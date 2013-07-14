@@ -85,10 +85,10 @@ public class PlayMenu extends Menu {
 			return;
 		}
 		int s = selected;
-		if(input.keyboard.keys[KeyEvent.VK_W] && selected > 3)selected -= 4;
-		if(input.keyboard.keys[KeyEvent.VK_S] && selected < 8)selected += 4;
-		if(input.keyboard.keys[KeyEvent.VK_A] && selected > 0)selected --;
-		if(input.keyboard.keys[KeyEvent.VK_D] && selected < 11)selected ++;
+		if(input.keyboard.keys[KeyEvent.VK_W] || input.keyboard.keys[KeyEvent.VK_UP] && selected > 3)selected -= 4;
+		if(input.keyboard.keys[KeyEvent.VK_S] || input.keyboard.keys[KeyEvent.VK_DOWN] && selected < 8)selected += 4;
+		if(input.keyboard.keys[KeyEvent.VK_A] || input.keyboard.keys[KeyEvent.VK_LEFT] && selected > 0)selected --;
+		if(input.keyboard.keys[KeyEvent.VK_D] || input.keyboard.keys[KeyEvent.VK_RIGHT] && selected < 11)selected ++;
 		if(input.keyboard.keys[KeyEvent.VK_SPACE]){
 			Menu.menu = new GameMenu(missions[selected], selected);
 			if(selected == 11){

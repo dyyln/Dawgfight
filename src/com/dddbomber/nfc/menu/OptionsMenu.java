@@ -69,7 +69,11 @@ public class OptionsMenu extends Menu {
 	}
 
 	public static void clearProgress() {
-		
+		for(Mission m : PlayMenu.instance.missions){
+			m.complete[0] = false;
+			m.complete[1] = false;
+			m.complete[2] = false;
+		}
 	}
 
 	@Override
