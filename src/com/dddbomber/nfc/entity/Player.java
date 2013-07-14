@@ -6,6 +6,7 @@ import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class Player extends Entity{
 	
@@ -61,6 +62,7 @@ public class Player extends Entity{
 			if(e != null){
 				missiles--;
 				level.entities.add(new Missile(x+4, y+4, e, this));
+				SoundPlayer.missile.play(0.15);
 			}
 			missileDelay = 60;
 		}

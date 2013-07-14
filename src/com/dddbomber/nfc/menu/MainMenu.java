@@ -26,11 +26,11 @@ public class MainMenu extends Menu {
 			moveDelay--;
 			return;
 		}
-		if(input.keyboard.keys[KeyEvent.VK_W]){
+		if(input.keyboard.keys[KeyEvent.VK_W] || input.keyboard.keys[KeyEvent.VK_UP]){
 			if(selected > 0)selected--;
 			moveDelay = 20;
 		}
-		if(input.keyboard.keys[KeyEvent.VK_S]){
+		if(input.keyboard.keys[KeyEvent.VK_S] || input.keyboard.keys[KeyEvent.VK_DOWN]){
 			if(selected < 2)selected++;
 			moveDelay = 20;
 		}

@@ -21,6 +21,7 @@ import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
 import com.dddbomber.nfc.menu.Menu;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
@@ -122,6 +123,7 @@ public class Game extends Canvas implements Runnable{
 	public static JFrame frame;
 	
 	public static void main(String[] args){
+		SoundPlayer.initSounds();
 		Game game = new Game();
 		frame = new JFrame(NAME);
 		try{

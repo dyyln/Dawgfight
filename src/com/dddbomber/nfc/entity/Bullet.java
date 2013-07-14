@@ -4,6 +4,7 @@ import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class Bullet extends Entity{
 	
@@ -16,6 +17,7 @@ public class Bullet extends Entity{
 		this.y = y;
 		this.rotation = rotation;
 		this.owner = owner;
+		SoundPlayer.shoot.play();
 	}
 	
 	public double speed = 2.1;
@@ -45,6 +47,7 @@ public class Bullet extends Entity{
 				if(this.intersects(e)){
 					e.damage(level, 1);
 					removed = true;
+					SoundPlayer.death.play(0.5);
 				}
 			}
 		}

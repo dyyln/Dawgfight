@@ -4,6 +4,7 @@ import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class ExplosionGround extends Entity{
 	

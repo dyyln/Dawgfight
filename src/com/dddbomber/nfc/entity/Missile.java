@@ -4,6 +4,7 @@ import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
+import com.dddbomber.nfc.sound.SoundPlayer;
 
 public class Missile extends Entity{
 	
@@ -52,6 +53,7 @@ public class Missile extends Entity{
 				if(this.intersects(e)){
 					e.damage(level, 3);
 					removed = true;
+					SoundPlayer.death.play(0.25);
 				}
 			}
 		}
