@@ -5,12 +5,12 @@ import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
 
-public class Gun extends Entity{
+public class FreindlyGun extends Entity{
 
-	public Gun(){
+	public FreindlyGun(){
 		xSize = 16;
 		ySize = 16;
-		x = 80+random.nextInt(480);
+		x = 80-random.nextInt(480);
 		y = 112;
 		rotation = 90;
 	}
@@ -36,7 +36,7 @@ public class Gun extends Entity{
 	public Entity target;
 
 	public void tick(Level level, InputHandler input){
-		target = level.getClosestFreindly(this, 250);
+		target = level.getClosestEnemy(this, 250);
 		double targetAngle = 0.0;
 		if(target != null){
 			targetAngle = Math.toDegrees(Math.atan2(target.y-y, target.x-x))+270;
@@ -81,6 +81,6 @@ public class Gun extends Entity{
 
 	public void render(Screen screen, Level level, int xScroll, int yScroll){
 		screen.draw(Asset.aagun, (int) x - xScroll, (int) y - yScroll, 0, 0, 16, 16);
-		screen.drawRotated(Asset.aagun, (int) x - xScroll-4, (int) y - yScroll-4, 16, 0, 24, 24, (int) (180-rotation));
+		screen.drawRotated(Asset.aagun, (int) x - xScroll-4, (int) y - yScroll-4, 16, 24, 24, 24, (int) (180-rotation));
 	}
 }

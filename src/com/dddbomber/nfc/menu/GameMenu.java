@@ -31,6 +31,9 @@ public class GameMenu extends Menu {
 			if(t == MissionType.aagun){
 				level.entities.add(new Gun());
 			}
+			if(t == MissionType.aagunf){
+				level.entities.add(new FreindlyGun());
+			}
 			if(t == MissionType.hoops){
 				for(int i = 0; i < 12; i++){
 					level.entities.add(new Hoop(i*48+160));

@@ -65,17 +65,6 @@ public class Level {
 			}
 		}
 		if(left == 0)complete = true;
-		if(random.nextInt(480)==0){
-			int xScroll = (int) (player.x-80);
-			int offset = random.nextInt(64);
-			Enemy e = new Enemy();
-			if(random.nextBoolean()){
-				e.x = xScroll-16-offset;
-			}else{
-				e.x = xScroll+160+offset;
-			}
-			//entities.add(e);
-		}
 	}
 	
 	public Entity getClosestEnemy(Entity origin, double d) {

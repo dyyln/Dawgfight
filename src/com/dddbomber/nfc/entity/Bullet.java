@@ -43,7 +43,7 @@ public class Bullet extends Entity{
 		
 		for(int i = 0; i < level.entities.size(); i++){
 			Entity e = level.entities.get(i);
-			if(e != owner && !(e instanceof Bullet) && !(e instanceof Missile) && !(e instanceof Freindly && owner instanceof Player) && !(owner instanceof Freindly && e instanceof Player) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
+			if(e != owner && !(e instanceof Bullet) && !(e instanceof Player && owner instanceof FreindlyGun) && !(e instanceof Missile) && !(e instanceof Freindly && owner instanceof Player) && !(owner instanceof Freindly && e instanceof Player) && !(owner instanceof Enemy && e instanceof Enemy) && !removed){
 				if(this.intersects(e)){
 					e.damage(level, 1);
 					removed = true;

@@ -4,7 +4,7 @@ import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
 
 public abstract class Menu {
-	public static Menu menu = new IntroMenu();
+	public static Menu menu = new SkirmishMenu();
 	
 	public abstract void tick(InputHandler input);
 	
