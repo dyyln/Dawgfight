@@ -30,7 +30,7 @@ public class IntroMenu extends Menu {
 	public static final String altName = "DYLAN DHOKIA";
 
 	@Override
-	public void render(Screen screen) {
+	public void render(Screen screen, InputHandler input) {
 		screen.fill(0, 0, screen.width, screen.height, 0);
 		
 		Bitmap b = new Bitmap(screen.width, screen.height);

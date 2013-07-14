@@ -12,7 +12,7 @@ public class OptionsMenu extends Menu {
 	}
 
 	@Override
-	public void render(Screen screen) {
+	public void render(Screen screen, InputHandler input) {
 		// TODO Auto-generated method stub
 
 	}

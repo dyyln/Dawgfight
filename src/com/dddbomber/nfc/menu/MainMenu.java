@@ -42,7 +42,7 @@ public class MainMenu extends Menu {
 	}
 
 	@Override
-	public void render(Screen screen) {
+	public void render(Screen screen, InputHandler input) {
 		screen.fill(0, 0, screen.width, screen.height, 0);
 		screen.draw(Asset.title, screen.width/2-64, 10-menuTicks, 0, 0, 128, 96);
 		

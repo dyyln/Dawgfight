@@ -94,7 +94,7 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		Menu.menu.render(screen);
+		Menu.menu.render(screen, input);
 		
 		render.draw(screen, screen.xKnock, screen.yKnock, 0, 0, WIDTH, HEIGHT);
 		

@@ -9,6 +9,7 @@ import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.entity.Enemy;
 import com.dddbomber.nfc.entity.Entity;
 import com.dddbomber.nfc.entity.Gun;
+import com.dddbomber.nfc.entity.Hoop;
 import com.dddbomber.nfc.entity.Player;
 import com.dddbomber.nfc.input.InputHandler;
 
@@ -24,6 +25,8 @@ public class Level {
 	Random random = new Random();
 	
 	public int score = 0;
+
+	public boolean complete;
 	
 	public Level(){
 		for(int i = 0; i < scenary.length; i++){
@@ -38,11 +41,16 @@ public class Level {
 	}
 	
 	public void tick(InputHandler input){
+		int left = 0;
 		for(int i = 0; i < entities.size(); i++){
 			Entity e = entities.get(i);
 			e.tick(this, input);
 			if(e.removed)entities.remove(i--);
+			if(e instanceof Enemy || e instanceof Gun || e instanceof Hoop){
+				left++;
+			}
 		}
+		if(left == 0)complete = true;
 		if(random.nextInt(480)==0){
 			int xScroll = (int) (player.x-80);
 			int offset = random.nextInt(64);

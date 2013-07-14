@@ -8,5 +8,5 @@ public abstract class Menu {
 	
 	public abstract void tick(InputHandler input);
 	
-	public abstract void render(Screen screen);
+	public abstract void render(Screen screen, InputHandler input);
 }
