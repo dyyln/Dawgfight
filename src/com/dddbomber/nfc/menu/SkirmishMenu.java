@@ -7,8 +7,12 @@ import com.dddbomber.nfc.level.Level;
 import com.dddbomber.nfc.level.Skirmish;
 
 public class SkirmishMenu extends Menu {
-	public Level level = new Skirmish(100);
+	public Level level;
 	
+	public SkirmishMenu(int totalUnits, int maxUnits, boolean turretsAllowed) {
+		level = new Skirmish(totalUnits, maxUnits, turretsAllowed);
+	}
+
 	@Override
 	public void tick(InputHandler input) {
 		level.tick(input);

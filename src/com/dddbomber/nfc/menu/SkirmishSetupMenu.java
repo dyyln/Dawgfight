@@ -14,7 +14,7 @@ public class SkirmishSetupMenu extends Menu {
 	public int maxUnits = 5, totalUnits = 50;
 	
 	public int ticks = 0, selected, moveDelay;
-	public boolean back = false;
+	public boolean back = false, turrets = false;
 	
 	@Override
 	public void tick(InputHandler input) {
@@ -45,8 +45,19 @@ public class SkirmishSetupMenu extends Menu {
 				moveDelay = 20;
 			}
 			
-			if(input.keyboard.keys[KeyEvent.VK_SPACE]){
-				
+			if(input.keyboard.keys[KeyEvent.VK_LEFT]){
+				if(selected == 0)maxUnits--;
+				if(selected == 1)totalUnits--;
+				moveDelay = 20;
+			}else if(input.keyboard.keys[KeyEvent.VK_RIGHT]){
+				if(selected == 0)maxUnits++;
+				if(selected == 1)totalUnits++;
+				moveDelay = 20;
+			}else if(input.keyboard.keys[KeyEvent.VK_SPACE]){
+				if(selected == 2)turrets = !turrets;
+				if(selected == 3)back = true;
+				if(selected == 4)Menu.menu = new SkirmishMenu(totalUnits, maxUnits, turrets);
+				moveDelay = 20;
 			}
 		}
 
@@ -66,25 +77,35 @@ public class SkirmishSetupMenu extends Menu {
 			screen.draw(s, screen.width/2-s.length()*3+ticks*2, 96+i*12+32*2, 3, 1);
 		}
 		
-		String msg = "OPTIONS";
+		String msg = "CUSTOM SKIRMISH";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 8, 3, 1);
 
 		msg = "TEAMSIZE";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 32, 3, 1);
-		msg = ""+totalUnits;
-		if(selected == 0)msg = "> " +msg +"< "; 
+		msg = ""+maxUnits;
+		if(selected == 0)msg = "> " +msg +" <"; 
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 40, 3, 1);
 
 		msg = "MAX UNITS AT ONCE";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 56, 3, 1);
-		msg = ""+maxUnits;
-		if(selected == 1)msg = "> " +msg +"< "; 
-		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 72, 3, 1);
+		msg = ""+totalUnits;
+		if(selected == 1)msg = "> " +msg +" <"; 
+		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 64, 3, 1);
+		
+		msg = "SPAWN TURRETS";
+		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 80, 3, 1);
+		msg = ""+turrets;
+		if(selected == 2)msg = "> " +msg +" <"; 
+		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 88, 3, 1);
 		
 
 		msg = "RETURN";
-		if(selected == 2)msg = "> " +msg +"< ";
+		if(selected == 3)msg = "> " +msg +" <";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 116, 3, 1);
+		
+		msg = "START";
+		if(selected == 4)msg = "> " +msg +" <";
+		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 132, 3, 1);
 	}
 
 }

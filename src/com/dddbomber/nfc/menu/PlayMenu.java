@@ -27,9 +27,9 @@ public class PlayMenu extends Menu {
 		missions[6].name = "Air To Ground";
 		missions[7].name = "Double Team";
 		missions[8].name = "Ground Back up";
-		missions[9].name = "Base Assault";
-		missions[10].name = "Base vs Base";
-		missions[11].name = "Full Assualt";
+		missions[9].name = "Triple Team";
+		missions[10].name = "Four On One";
+		missions[11].name = "CUSTOM SKIRMISH";
 
 		missions[0].type.add(MissionType.cleared);
 		missions[0].type.add(MissionType.hoops);
@@ -66,6 +66,14 @@ public class PlayMenu extends Menu {
 		missions[8].type.add(MissionType.enemy);
 		missions[8].type.add(MissionType.enemy);
 		missions[8].type.add(MissionType.aagunf);
+
+		missions[9].type.add(MissionType.enemy);
+		missions[9].type.add(MissionType.enemy);
+
+		missions[10].type.add(MissionType.enemy);
+		missions[10].type.add(MissionType.enemy);
+		missions[10].type.add(MissionType.enemy);
+
 	}
 
 	public int moveDelay = 15;
@@ -83,6 +91,9 @@ public class PlayMenu extends Menu {
 		if(input.keyboard.keys[KeyEvent.VK_D] && selected < 11)selected ++;
 		if(input.keyboard.keys[KeyEvent.VK_SPACE]){
 			Menu.menu = new GameMenu(missions[selected], selected);
+			if(selected == 11){
+				Menu.menu = new SkirmishSetupMenu();
+			}
 			moveDelay = 30;
 		}
 		if(s != selected)moveDelay = 15;
@@ -102,6 +113,7 @@ public class PlayMenu extends Menu {
 				if(m.complete[1])screen.draw(Asset.mission, x*36+21, y*28+22, 13, 38, 6, 6);
 				if(m.complete[2])screen.draw(Asset.mission, x*36+30, y*28+23, 22, 39, 5, 5);
 				String msg = "" +(x+y*4+1);
+				if((x+y*4+1)==12)msg = "OWN";
 				screen.draw(msg, x*36+24-msg.length()*3, y*28+12, 3, 1);
 			}
 		}

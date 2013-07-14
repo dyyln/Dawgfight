@@ -86,17 +86,17 @@ public class OptionsMenu extends Menu {
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 8, 3, 1);
 
 		msg = "CLEAR PROGRESS";
-		if(selected == 0)msg = "> " +msg +"< "; 
+		if(selected == 0)msg = "> " +msg +" <"; 
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 32, 3, 1);
 		msg = "SOUNDS : " +(sounds ? "ON" : "OFF");
-		if(selected == 1)msg = "> " +msg +"< ";
+		if(selected == 1)msg = "> " +msg +" <";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 48, 3, 1);
 		msg = "MUSIC : " +(music ? "ON" : "OFF");
-		if(selected == 2)msg = "> " +msg +"< ";
+		if(selected == 2)msg = "> " +msg +" <";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 64, 3, 1);
 
 		msg = "RETURN";
-		if(selected == 3)msg = "> " +msg +"< ";
+		if(selected == 3)msg = "> " +msg +" <";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 116, 3, 1);
 	}
 

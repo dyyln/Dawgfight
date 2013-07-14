@@ -15,9 +15,13 @@ import com.dddbomber.nfc.input.InputHandler;
 public class Skirmish extends Level {
 
 	public int playerTeam, enemyTeam;
+	public int active;
+	public boolean turretsAllowed;
 	
-	public Skirmish(int teamSize) {
+	public Skirmish(int teamSize, int teamActive, boolean turretsAllowed) {
 		this.playerTeam = this.enemyTeam = teamSize;
+		this.active = teamActive;
+		this.turretsAllowed = turretsAllowed;
 		entities.add(new FreindlyGun());
 		entities.add(new Gun());
 		entities.add(new FreindlyGun());
@@ -59,7 +63,7 @@ public class Skirmish extends Level {
 		}
 
 		if(random.nextInt(120)==0){
-			if(enemyTeam > 0 && enemies < 10){
+			if(enemyTeam > 0 && enemies < active){
 				int xScroll = (int) (player.x-80);
 				int offset = random.nextInt(64);
 				Enemy e = new Enemy();
@@ -71,7 +75,7 @@ public class Skirmish extends Level {
 				enemyTeam--;
 				entities.add(e);
 			}
-			if(playerTeam > 0 && players < 10){
+			if(playerTeam > 0 && players < active){
 				int xScroll = (int) (player.x-80);
 				int offset = random.nextInt(64);
 				Freindly e = new Freindly();
@@ -85,12 +89,12 @@ public class Skirmish extends Level {
 			}
 		}
 
-		if(random.nextInt(240)==0){
-			if(enemyTeam > 1 && enemies < 10){
+		if(random.nextInt(240)==0 && turretsAllowed){
+			if(enemyTeam > 1 && enemies < active){
 				enemyTeam-=2;
 				entities.add(new Gun());
 			}
-			if(playerTeam > 1 && players < 10){
+			if(playerTeam > 1 && players < active){
 				playerTeam-=2;
 				entities.add(new FreindlyGun());
 			}

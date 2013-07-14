@@ -70,7 +70,7 @@ public class GameMenu extends Menu {
 					if(seconds < 20)mission.complete[2] = true; 
 				}
 			}
-			if(id == 2 || id == 3 || id == 7){
+			if(id == 2 || id == 3 || id >= 7){
 				if(level.player.health > 10)mission.complete[0] = true;
 				if(level.player.health > 15)mission.complete[2] = true;
 			}
