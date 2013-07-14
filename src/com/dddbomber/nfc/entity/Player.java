@@ -42,6 +42,16 @@ public class Player extends Entity{
 		if(left && y != 116)rotation-=3;
 		if(right && y != 116)rotation+=3;
 		
+
+		if(health < 5 && random.nextBoolean()){
+			double rot = Math.toRadians(rotation+160+random.nextInt(41));
+			level.entities.add(new Particle(x+6, y+8, 1, Math.sin(rot)*1.0, Math.cos(rot)*-1.0));
+		}
+		if(health < 3 && random.nextBoolean()){
+			double rot = Math.toRadians(rotation+160+random.nextInt(41));
+			level.entities.add(new Particle(x+6, y+8, 2, Math.sin(rot)*1.0, Math.cos(rot)*-1.0));
+		}
+		
 		rotation = rotation%360;
 		while(rotation < 0)rotation += 360;
 		if((left || right) && speed > 0.75)speed -= 0.02;

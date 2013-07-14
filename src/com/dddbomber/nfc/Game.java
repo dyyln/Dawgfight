@@ -14,8 +14,10 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Render;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.input.InputHandler;
@@ -140,20 +142,24 @@ public class Game extends Canvas implements Runnable{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
-		//frame.dispose();
-		//frame.setUndecorated(true);
-
-		//frame.setBounds(0,0,frame.getToolkit().getScreenSize().width/2,frame.getToolkit().getScreenSize().height/2);
+		int choice = JOptionPane.showConfirmDialog(frame, "Do You Want To Launch In Fullscreen?", "Jet With It", JOptionPane.YES_NO_OPTION);
+		boolean fullscreen = choice==0;
+		if(choice != 0 && choice != 1)System.exit(0);
 		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-    	if (gd.isFullScreenSupported() && false) {
+		if(fullscreen && gd.isFullScreenSupported()){
+			frame.dispose();
+			frame.setUndecorated(true);
+
+			frame.setBounds(0,0,frame.getToolkit().getScreenSize().width/2,frame.getToolkit().getScreenSize().height/2);
+			
     		try {
     			gd.setFullScreenWindow(frame);
     		}catch(Exception e){
     			frame.setVisible(true);
     		}
-    	}else{
+		}else{
 			frame.setSize(SCREENWIDTH*3, SCREENHEIGHT*3);
 			frame.setVisible(true);
 			frame.setLocationRelativeTo(null);
