@@ -2,15 +2,20 @@ package com.dddbomber.nfc.entity;
 
 import com.dddbomber.nfc.assets.Asset;
 import com.dddbomber.nfc.assets.Screen;
+import com.dddbomber.nfc.entity.Bullet;
+import com.dddbomber.nfc.entity.Entity;
+import com.dddbomber.nfc.entity.ExplosionAir;
+import com.dddbomber.nfc.entity.ExplosionGround;
+import com.dddbomber.nfc.entity.Particle;
 import com.dddbomber.nfc.input.InputHandler;
 import com.dddbomber.nfc.level.Level;
 
-public class Enemy extends Entity{
+public class Freindly extends Entity{
 
-	public Enemy(){
+	public Freindly(){
 		xSize = 8;
 		ySize = 8;
-		x = 80+random.nextInt(480);
+		x = 80+random.nextInt(96)-48;
 		y = 76;
 		rotation = 90;
 	}
@@ -42,7 +47,7 @@ public class Enemy extends Entity{
 
 	public void tick(Level level, InputHandler input){
 		if(target == null || target.removed){
-			target = level.getClosestFreindly(this, 1000000.0);
+			target = level.getClosestEnemy(this, 1000000.0);
 		}
 		if(runAway % 3 == 0){
 			if(health < 5){
@@ -62,20 +67,20 @@ public class Enemy extends Entity{
 		}
 
 		if(!loop && target != null){
-			double target = Math.toDegrees(Math.atan2(level.player.y-y, level.player.x-x))+90;
-			if(runAway < 200)target += 180;
-			while(target < 0)target += 360;
-			target = target%360;
+			double targetAngle = Math.toDegrees(Math.atan2(target.y-y, target.x-x))+90;
+			if(runAway < 200)targetAngle += 180;
+			while(targetAngle < 0)targetAngle += 360;
+			targetAngle = targetAngle%360;
 
-			if(rotation > target)rotation-=1;
-			if(rotation < target)rotation+=1;
+			if(rotation > targetAngle)rotation-=1;
+			if(rotation < targetAngle)rotation+=1;
 
 			while(rotation < 0)rotation += 360;
 			rotation = rotation%360;
 
 			int xo = (int) (x-xScroll);
-			if(xo > 192)rotation = target;
-			if(xo < -48)rotation = target;
+			if(xo > 192)rotation = targetAngle;
+			if(xo < -48)rotation = targetAngle;
 
 			if(y > 80){
 				if(rotation > 180){
@@ -84,7 +89,7 @@ public class Enemy extends Entity{
 					rotation-=3;
 				}
 			}
-			if(shootDelay-- <= 0 && rotation > target-10 && rotation < target+10){
+			if(shootDelay-- <= 0 && rotation > targetAngle-10 && rotation < targetAngle+10){
 				level.entities.add(new Bullet(x+4, y+4, rotation, this, speed+1.0));
 				shootDelay = 30;
 
@@ -144,11 +149,11 @@ public class Enemy extends Entity{
 	public void render(Screen screen, Level level, int xScroll, int yScroll){
 		this.xScroll = xScroll;
 		if(rotation == 90){
-			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 16, 16, 16, 16);
+			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 16, 0, 16, 16);
 		}else if(rotation == 270){
-			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 32, 16, 16, 16);
+			screen.draw(Asset.plane, (int) x - xScroll, (int) y - yScroll, 32, 0, 16, 16);
 		}else{
-			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y - yScroll, (rotation > 180 ? 64 : 48), 16, 16, 16, (int) -rotation);
+			screen.drawRotated(Asset.plane, (int) x - xScroll, (int) y - yScroll, (rotation > 180 ? 64 : 48), 0, 16, 16, (int) -rotation);
 		}
 	}
 }

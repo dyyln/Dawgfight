@@ -32,22 +32,31 @@ public class Gun extends Entity{
 
 	public int shootDelay;
 	public int health = 15;
+	
+	public Entity target;
 
 	public void tick(Level level, InputHandler input){
-			double target = Math.toDegrees(Math.atan2(level.player.y-y, level.player.x-x))+270;
-			while(target < 0)target += 360;
-			target = target%360;
+		target = level.getClosestFreindly(this, 250);
+		double targetAngle = 0.0;
+		if(target != null){
+			targetAngle = Math.toDegrees(Math.atan2(level.player.y-y, level.player.x-x))+270;
+			while(targetAngle < 0)targetAngle += 360;
+			targetAngle = targetAngle%360;
+		}
+			
 
-			if(rotation > target)rotation-=2;
-			if(rotation < target)rotation+=2;
+			if(rotation > targetAngle)rotation-=2;
+			if(rotation < targetAngle)rotation+=2;
 
 			while(rotation < 0)rotation += 360;
 			rotation = rotation%360;
 			shootDelay--;
-			if(shootDelay <= 10 && shootDelay % 5 == 0  && rotation > target-10 && rotation < target+10){
+			if(shootDelay <= 10 && shootDelay % 3 == 0  && rotation > targetAngle-10 && rotation < targetAngle+10){
 				level.entities.add(new Bullet(x+4, y+4, rotation+180, this, 2.1));
 			}
-			if(shootDelay <= 0)shootDelay = 90;
+			if(shootDelay <= 0){
+				shootDelay = 90;
+			}
 
 		if(y > 116){
 			removed = true;

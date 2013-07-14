@@ -25,12 +25,15 @@ public class GameMenu extends Menu {
 			if(t == MissionType.enemy){
 				level.entities.add(new Enemy());
 			}
+			if(t == MissionType.freindly){
+				level.entities.add(new Freindly());
+			}
 			if(t == MissionType.aagun){
 				level.entities.add(new Gun());
 			}
 			if(t == MissionType.hoops){
-				for(int i = 0; i < 25; i++){
-					level.entities.add(new Hoop(i*24+160));
+				for(int i = 0; i < 12; i++){
+					level.entities.add(new Hoop(i*48+160));
 				}
 			}
 			if(t == MissionType.targets){
@@ -60,6 +63,14 @@ public class GameMenu extends Menu {
 					if(seconds < 30)mission.complete[0] = true;
 					if(seconds < 20)mission.complete[2] = true; 
 				}
+			}
+			if(id == 2){
+				if(level.player.health > 10)mission.complete[0] = true;
+				if(level.player.health > 15)mission.complete[2] = true;
+			}
+			if(id == 3){
+				if(level.freindlies > 0)mission.complete[0] = true;
+				if(level.freindlies > 1)mission.complete[2] = true;
 			}
 		}
 	}

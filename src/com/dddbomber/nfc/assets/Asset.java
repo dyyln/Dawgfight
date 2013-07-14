@@ -14,6 +14,7 @@ public class Asset {
 	public static Bitmap aagun = AssetLoader.loadBitmap("/aagun.png");
 	public static Bitmap mission = AssetLoader.loadBitmap("/mission.png");
 	public static Bitmap targets = AssetLoader.loadBitmap("/targets.png");
+	public static Bitmap hangar = AssetLoader.loadBitmap("/hangar.png");
 	
 	public static double lerpDegrees(double start, double end, double amount) {
         double difference = Math.abs(end - start);

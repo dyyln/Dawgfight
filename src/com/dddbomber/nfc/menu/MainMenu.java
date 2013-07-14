@@ -10,7 +10,7 @@ public class MainMenu extends Menu {
 	
 	public  int menuTicks = 0, selected = 0, anim, moveDelay = 60;
 
-	private static String[] options = {"PLAY", "OPTIONS", "ABOUT"};
+	public static String[] options = {"PLAY", "OPTIONS", "ABOUT"};
 
 	@Override
 	public void tick(InputHandler input) {

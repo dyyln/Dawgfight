@@ -35,9 +35,22 @@ public class PlayMenu extends Menu {
 		missions[1].type.add(MissionType.cleared);
 		missions[1].type.add(MissionType.targets);
 		missions[1].type.add(MissionType.timed);
+
+		missions[3].type.add(MissionType.cleared);
+		missions[3].type.add(MissionType.aagun);
+
+		missions[4].type.add(MissionType.enemy);
+		missions[4].type.add(MissionType.enemy);
+		missions[4].type.add(MissionType.freindly);
+		missions[4].type.add(MissionType.freindly);
+
+		missions[5].type.add(MissionType.aagun);
+		missions[5].type.add(MissionType.enemy);
+		missions[5].type.add(MissionType.freindly);
+		missions[5].type.add(MissionType.freindly);
 	}
 
-	public int moveDelay;
+	public int moveDelay = 15;
 	
 	@Override
 	public void tick(InputHandler input) {
@@ -52,6 +65,7 @@ public class PlayMenu extends Menu {
 		if(input.keyboard.keys[KeyEvent.VK_D] && selected < 11)selected ++;
 		if(input.keyboard.keys[KeyEvent.VK_SPACE]){
 			Menu.menu = new GameMenu(missions[selected], selected);
+			moveDelay = 30;
 		}
 		if(s != selected)moveDelay = 15;
 	}

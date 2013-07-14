@@ -339,11 +339,9 @@ public class Bitmap {
 			for(int x = 0; x < w; x++){
 				int xPix = x+xPos;
 				if(xPix < 0 || xPix >= width)continue;
-				int merged = col;
-				if(amount != 100){
-					merged = merge(col, pixels[xPix + yPix * width], amount);
+				if(dithers.get(amount).matrix[(xPix%3)+(yPix%3)*3] == 1){
+					pixels[xPix + yPix * width] = col;
 				}
-				pixels[xPix + yPix * width] = merged;
 			}
 		}
 		

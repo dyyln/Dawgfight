@@ -8,6 +8,7 @@ import com.dddbomber.nfc.assets.Bitmap;
 import com.dddbomber.nfc.assets.Screen;
 import com.dddbomber.nfc.entity.Enemy;
 import com.dddbomber.nfc.entity.Entity;
+import com.dddbomber.nfc.entity.Freindly;
 import com.dddbomber.nfc.entity.Gun;
 import com.dddbomber.nfc.entity.Hoop;
 import com.dddbomber.nfc.entity.Player;
@@ -29,6 +30,8 @@ public class Level {
 
 	public boolean complete;
 	
+	public int startDelay = 180;
+	
 	public Level(){
 		for(int i = 0; i < scenary.length; i++){
 			scenary[i] = random.nextInt(Asset.tiles.width/16+1);
@@ -38,17 +41,27 @@ public class Level {
 		}
 		entities.add(player);
 		entities.add(new Enemy());
-		entities.add(new Gun());
 	}
 	
+	public int freindlies;
+	
 	public void tick(InputHandler input){
+		if(startDelay > 0){
+			startDelay--;
+			return;
+		}
+		
 		int left = 0;
+		freindlies = 0;
 		for(int i = 0; i < entities.size(); i++){
 			Entity e = entities.get(i);
 			e.tick(this, input);
 			if(e.removed)entities.remove(i--);
 			if(e instanceof Enemy || e instanceof Gun || e instanceof Hoop || e instanceof Target){
 				left++;
+			}
+			if(e instanceof Freindly){
+				freindlies++;
 			}
 		}
 		if(left == 0)complete = true;
@@ -69,7 +82,7 @@ public class Level {
         Entity closestEnemy = null;
         double bestDistSquared = Double.MAX_VALUE;
         for (Entity e : entities) {
-        	if(!(e instanceof Enemy))continue;
+        	if(!(e instanceof Enemy) && !(e instanceof Gun))continue;
         	double xd = e.x-origin.x;
         	double yd = e.y-origin.y;
             double distSquared = xd*xd+yd*yd;
@@ -80,6 +93,23 @@ public class Level {
         }
         return closestEnemy;
     }
+
+
+	public Entity getClosestFreindly(Entity origin, double d) {
+        Entity closestEnemy = null;
+        double bestDistSquared = Double.MAX_VALUE;
+        for (Entity e : entities) {
+        	if(!(e instanceof Freindly) && !(e instanceof Player))continue;
+        	double xd = e.x-origin.x;
+        	double yd = e.y-origin.y;
+            double distSquared = xd*xd+yd*yd;
+            if (distSquared < bestDistSquared && distSquared < d * d) {
+                bestDistSquared = distSquared;
+                closestEnemy = e;
+            }
+        }
+        return closestEnemy;
+	}
 	
 	public void render(Screen screen, InputHandler input){
 		int xScroll = (int) (player.x-80);
@@ -152,6 +182,12 @@ public class Level {
 		if(player.y == 116){
 			msg = "PRESS UP TO TAKE OFF";
 			screen.draw(msg, 80-msg.length()*3, 2, 3, 1);
+		}
+		if(startDelay > 0){
+			screen.fill(0, 0, screen.width, screen.height, 3, 4);
+			msg = ""+(startDelay/60+1);
+			screen.fill(78-msg.length()*3, 22, 16, 20, 3);
+			screen.draw(msg, 80-msg.length()*3, 24, 1, 2);
 		}
 	}
 }
