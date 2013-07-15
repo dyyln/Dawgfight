@@ -41,17 +41,17 @@ public class SkirmishSetupMenu extends Menu {
 				moveDelay = 20;
 			}
 			if(input.keyboard.keys[KeyEvent.VK_S] || input.keyboard.keys[KeyEvent.VK_DOWN]){
-				if(selected < 3)selected++;
+				if(selected < 4)selected++;
 				moveDelay = 20;
 			}
 			
 			if(input.keyboard.keys[KeyEvent.VK_LEFT]){
-				if(selected == 0)maxUnits--;
-				if(selected == 1)totalUnits--;
+				if(selected == 0)totalUnits--;
+				if(selected == 1)maxUnits--;
 				moveDelay = 20;
 			}else if(input.keyboard.keys[KeyEvent.VK_RIGHT]){
-				if(selected == 0)maxUnits++;
-				if(selected == 1)totalUnits++;
+				if(selected == 0)totalUnits++;
+				if(selected == 1)maxUnits++;
 				moveDelay = 20;
 			}else if(input.keyboard.keys[KeyEvent.VK_SPACE]){
 				if(selected == 2)turrets = !turrets;
@@ -82,13 +82,13 @@ public class SkirmishSetupMenu extends Menu {
 
 		msg = "TEAMSIZE";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 32, 3, 1);
-		msg = ""+maxUnits;
+		msg = ""+totalUnits;
 		if(selected == 0)msg = "> " +msg +" <"; 
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 40, 3, 1);
 
 		msg = "MAX UNITS AT ONCE";
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 56, 3, 1);
-		msg = ""+totalUnits;
+		msg = ""+maxUnits;
 		if(selected == 1)msg = "> " +msg +" <"; 
 		screen.draw(msg, screen.width/2-msg.length()*3+ticks*2-192, 64, 3, 1);
 		
